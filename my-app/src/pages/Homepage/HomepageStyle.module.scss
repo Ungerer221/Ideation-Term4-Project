@@ -1,0 +1,96 @@
+// Color Variables
+$primaryColor: #FF5C37;
+$backgroundColor: #FCFBE9;
+$black: #000000;
+$white: #ffffff;
+$testBGColor: #9857CD;
+$test02BgColor: #98CD57;
+
+::-webkit-scrollbar{
+    display: none;
+}
+
+.homePageMainContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    gap: 40px;
+    height: 2000px;
+
+    .homePageLeftColumn {
+        // background-color: $test02BgColor;
+
+        .homepageLandingTextCon {
+            h1 {
+                font-family: "Oswald", sans-serif;
+                text-transform: uppercase;
+                font-size: 124px;
+                margin: 0;
+            }
+
+            h2 {
+                font-family: "Oswald", sans-serif;
+                text-transform: uppercase;
+                font-size: 64px;
+                margin: 0;
+            }
+
+            p {
+                width: 500px;
+                font-family: "Poppins", sans-serif;
+            }
+        }
+    }
+
+    .homePageRightColumn {
+        // background-color: $testBGColor;
+        // width: 100%;
+
+        .hazzardSmallCon {
+            width: fit-content;
+            position: relative;
+            left: 464px;
+            // background-color: $test02BgColor;
+
+            // transform: translateX(450px);
+        }
+
+        .rightsideLandingImageCon {
+            .imageConFront {
+                position: relative;
+                top: -100px;
+                background-color: $primaryColor;
+                height: 460px;
+                width: 440px;
+                border-radius: 22px;
+                border: 12px solid $backgroundColor;
+                z-index: 5;
+                animation: mymove 5s infinite;
+            }
+            @keyframes imageConFront {
+                from{top: -2000px;}
+                to{top: -480px;}
+            }
+
+            .imageConBack {
+                position: relative;
+                top: -480px;
+                left: 160px;
+                background-color: $primaryColor;
+                height: 460px;
+                width: 440px;
+                border-radius: 22px;
+                border: 12px solid $backgroundColor;
+                z-index: 0;
+            }
+        }
+        .landingButtonCon{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}

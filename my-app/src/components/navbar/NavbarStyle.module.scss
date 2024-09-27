@@ -1,0 +1,61 @@
+// Color Variables
+$primaryColor: #FF5C37;
+$backgroundColor: #FCFBE9;
+$black: #000000;
+$white: #ffffff;
+
+
+.NavbarMainCon {
+    background-color: $backgroundColor;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+
+    .logoAndNameCon {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 20px;
+        font-family: "Oswald", sans-serif;
+        font-size: 16px;
+    }
+
+    .routeNavCon {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+
+        .navTab {
+            .textWrapperTab {
+                color: $black;
+                font-family: "Oswald", sans-serif;
+                font-size: 24px;
+                font-weight: 900;
+                letter-spacing: 0;
+                line-height: normal;
+                margin-top: -1px;
+                position: relative;
+                white-space: nowrap;
+                width: fit-content;
+                cursor: pointer;
+            }
+
+            .active {
+                color: $primaryColor;
+                font-family: "Oswald", sans-serif;
+                font-size: 24px;
+                font-weight: 900;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .navMenuCon {
+        padding: 0px 0px 0px 150px;
+    }
+}
