@@ -24,9 +24,9 @@ const Navbar = () => {
             </div>
             {/* router con */}
             <div className={styles.routeNavCon}>
-                <div className={styles.navTab} onClick={() => navigate("/home")}>
+                <div className={styles.navTab} onClick={() => navigate("/")}>
                     <div
-                        className={`${styles["textWrapperTab"]} ${isActive("/home") ? styles.active : ""}`}
+                        className={`${styles["textWrapperTab"]} ${isActive("/") ? styles.active : ""}`}
                     >HOME</div>
                 </div>
                 <div className={styles.navTab} onClick={() => navigate("/profile")}>
