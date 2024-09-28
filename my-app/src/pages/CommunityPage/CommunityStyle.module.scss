@@ -1,0 +1,130 @@
+// Color Variables
+$primaryColor: #FF5C37;
+$backgroundColor: #FCFBE9;
+$black: #000000;
+$white: #ffffff;
+$testBGColor: #9857CD;
+$test02BgColor: #98CD57;
+
+.communityPageMainContainer {
+    font-family: "Poppins", sans-serif;
+
+    .communityTopBanner {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        h1 {
+            font-family: "Oswald", sans-serif;
+            font-size: 64px;
+            text-transform: uppercase;
+            margin: 0;
+            user-select: none;
+        }
+
+        p {
+            font-family: "Poppins", sans-serif;
+            margin: 0;
+            user-select: none;
+        }
+
+        .communityTopBannerParaText {
+            display: flex;
+            flex-direction: row;
+            // flex-wrap: wrap;
+            align-items: center;
+            user-select: none;
+
+            .higlightedText {
+                padding: 5px 10px;
+                width: fit-content;
+                border-radius: 12px;
+                background-color: #FF5C37;
+                color: $backgroundColor;
+            }
+        }
+    }
+
+    .CommunityPageContentDisplay {
+        margin-top: 40px;
+        width: 100%;
+
+        .timeframeSwitch {
+            margin: auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            box-shadow: inset 0 0 10px #2f2f2f4b;
+            padding: 5px;
+            border-radius: 12px;
+            width: fit-content;
+
+            .allTime{
+                background-color: transparent;
+                outline: none;
+                border: none;
+                padding: 8px 16px;
+                font-weight: 500;
+                text-transform: capitalize;
+                cursor: pointer;
+            }
+
+            .todayTime {
+                background-color: $primaryColor;
+                padding: 8px 16px;
+                border-radius: 6px;
+                border: none;
+                outline: none;
+                color: $backgroundColor;
+                font-weight: 700;
+                text-transform: capitalize;
+                cursor: pointer;
+                box-shadow:
+                    2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+                    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+                    12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+                    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+                    41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+                    100px 100px 80px rgba(0, 0, 0, 0.07);
+            }
+        }
+
+        h4 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+            font-weight: 600;
+            font-style: normal;
+            opacity: .7;
+        }
+
+        .contentDisplay {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: auto auto auto auto auto auto;
+            column-gap: 20px;
+            row-gap: 40px;
+
+            .cardExample {
+                // width: 300px;
+                height: 450px;
+                background-color: $primaryColor;
+                border-radius: 22px;
+            }
+
+            .cardExample02 {
+                // width: 300px;
+                height: 550px;
+                background-color: $primaryColor;
+                border-radius: 22px;
+            }
+        }
+        .masonryBox{
+            margin-top: 20px;
+        }
+    }
+}

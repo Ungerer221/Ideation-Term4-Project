@@ -12,6 +12,7 @@ import { useState, useEffect } from "react";
 
 // Page imports
 import Homepage from './pages/Homepage/Homepage';
+import CommunityPage from './pages/CommunityPage/CommunityPage';
 
 // import components
 import Navbar from './components/navbar/Navbar';
@@ -47,9 +48,9 @@ function NavRoutes() {
       <div>
         <Routes>
           <Route path="/home" element={<Homepage />}></Route>
-          <Route path="/home" element={<Homepage />}></Route>
-          <Route path="/home" element={<Homepage />}></Route>
-          <Route path="/home" element={<Homepage />}></Route>
+          <Route path="/profile" element={<Homepage />}></Route>
+          <Route path="/generate" element={<Homepage />}></Route>
+          <Route path="/community" element={<CommunityPage />}></Route>
 
         </Routes>
       </div>
