@@ -6,7 +6,7 @@ $white: #ffffff;
 $testBGColor: #9857CD;
 $test02BgColor: #98CD57;
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
     display: none;
 }
 
@@ -58,6 +58,9 @@ $test02BgColor: #98CD57;
         }
 
         .rightsideLandingImageCon {
+            // background-color: $testBGColor;
+            height: 500px;
+
             .imageConFront {
                 position: relative;
                 top: -100px;
@@ -69,9 +72,15 @@ $test02BgColor: #98CD57;
                 z-index: 5;
                 animation: mymove 5s infinite;
             }
+
             @keyframes imageConFront {
-                from{top: -2000px;}
-                to{top: -480px;}
+                from {
+                    top: -2000px;
+                }
+
+                to {
+                    top: -480px;
+                }
             }
 
             .imageConBack {
@@ -86,11 +95,59 @@ $test02BgColor: #98CD57;
                 z-index: 0;
             }
         }
-        .landingButtonCon{
+
+        .landingButtonCon {
             display: flex;
             flex-direction: row;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
+            gap: 10px;
+            width: 520px;
+            // background-color: $test02BgColor;
+
+            .aboutUsButton {
+                outline: none;
+                border: none;
+                background-color: transparent;
+                padding: 12px 36px;
+                font-family: "Poppins", sans-serif;
+                font-size: 32px;
+                font-weight: 400;
+                cursor: pointer;
+                transition: all ease-in-out .1s;
+            }
+
+            .aboutUsButton:hover {
+                font-weight: 900;
+            }
+
+            .HomepageGenButton {
+                background-color: $primaryColor;
+                border-radius: 12px;
+                outline: none;
+                border: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                padding: 12px 36px;
+                cursor: pointer;
+                transition: all ease-in-out .1s;
+
+                p {
+                    font-size: 32px;
+                    text-transform: uppercase;
+                    font-weight: 900;
+                    font-family: "Oswald", sans-serif;
+                    margin: 0;
+                }
+            }
+
+            .HomepageGenButton:hover{
+                transform: scale(1.1);
+                color: $backgroundColor;
+                justify-content: space-between;
+            }
         }
     }
 }

@@ -1,34 +1,24 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./HomepageStyle.module.scss";
+import { useNavigate, useLocation } from "react-router-dom";
 import anime from 'animejs';
+
+// icons
+import GenIcon from '../../assets/icons/genIcon.svg'
 
 // assets
 import SmallHazzardArt from '../../assets/hazzardart/smallhazzardart.svg'
 import LargeHazzArt from '../../assets/hazzardart/largehazzardart.svg'
 
-function Throw() {
-    anime({
-        targets: '.imageConFront',
-        translateX: 500,
-        translateY: 20,
-        rotate: '120',
-        borderRadius: ['100%', '10%'],
-        scale: 2,
-    })
-    anime({
-        targets: '.imageConBack',
-        translateX: 400,
-        translateY: 50,
-        rotate: '450',
-        borderRadius: ['100%', '10%'],
-        scale: 1.5,
-    })
-}
 
 function Homepage() {
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
     return (
         <div className={styles.homePageMainContainer}>
-            {/* left side */}
+            {/* //* left side...................................................................... */}
             <div className={styles.homePageLeftColumn}>
                 <div className={styles.homepageLandingTextCon}>
                     <h1>ideation</h1>
@@ -41,7 +31,7 @@ function Homepage() {
                 </div>
                 <img src={LargeHazzArt} alt="art" />
             </div>
-            {/* right side */}
+            {/* //* right side..................................................................... */}
             <div className={styles.homePageRightColumn}>
                 <div className={styles.hazzardSmallCon}>
                     <img src={SmallHazzardArt} alt="art" />
@@ -50,9 +40,13 @@ function Homepage() {
                     <div className={styles.imageConFront}></div>
                     <div className={styles.imageConBack}></div>
                 </div>
+                {/* //* landing page button */}
                 <div className={styles.landingButtonCon}>
-                    <button></button>
-                    <button></button>
+                    <button className={styles.aboutUsButton}>About us</button>
+                    <button className={styles.HomepageGenButton} onClick={() => navigate("/generate")}>
+                        <p>generate</p>
+                        <img src={GenIcon} alt="icon" />
+                    </button>
                 </div>
             </div>
         </div>
