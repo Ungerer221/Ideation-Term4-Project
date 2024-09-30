@@ -33,17 +33,6 @@ function NavRoutes() {
 
   const showNavbar = (location.pathname);
 
-  // const contentStyle = showNavbar
-  //   ? { flex: 1, marginLeft: "264px" }
-  //   : {
-  //       height: "100vh",
-  //       width: "100vw",
-  //     };
-
-  // useEffect(() => {
-  //   // fetchUserDetails(setUser);
-  // }, []);
-
   return (
     <>
       {showNavbar && <Navbar />}
@@ -51,9 +40,8 @@ function NavRoutes() {
         <Routes>
           <Route path="/" element={<Homepage />}></Route>
           <Route path="/profile" element={<ProfilePage />}></Route>
-          <Route path="/generate" element={<GeneratePage />}></Route>
           <Route path="/community" element={<CommunityPage />}></Route>
-
+          <Route path="/generate" element={<GeneratePage />}></Route>
         </Routes>
       </div>
     </>

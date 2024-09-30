@@ -1,8 +1,126 @@
+// Color Variables
+$primaryColor: #FF5C37;
+$backgroundColor: #FCFBE9;
+$black: #000000;
+$white: #ffffff;
+$testBGColor: #9857CD;
+$test02BgColor: #98CD57;
 
 
-.GeneratePageMainContainer{
+.GeneratePageMainContainer {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     font-family: "Poppins", sans-serif;
+    // z-index: 1;
+
+    .titleContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin: 0;
+
+        h1 {
+            font-family: "Oswald", sans-serif;
+            text-transform: uppercase;
+            font-size: 96px;
+            margin: 0;
+        }
+    }
+
+    .generationButtonSection {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: fit-content;
+        width: 100%;
+        margin-top: 200px;
+        z-index: -5;
+        // background-color: $testBGColor;
+
+        .powerButtonCon {
+            position: absolute;
+            cursor: pointer;
+            outline: none;
+            border: none;
+            border-radius: 100%;
+            // background-color: $test02BgColor;
+            z-index: 1;
+            width: fit-content;
+            height: fit-content;
+
+            img {
+                transition: all ease-in-out .2s;
+            }
+
+            :hover {
+                transform: scale(1.2);
+                width: fit-content;
+                height: fit-content;
+            }
+        }
+
+        .genRingCon01 {
+            position: absolute;
+
+            img {
+                width: 400px;
+                opacity: .7;
+                z-index: -6;
+            }
+        }
+
+        .genRingCon02 {
+            position: absolute;
+
+            img {
+                width: 550px;
+                opacity: .7;
+                z-index: -6;
+            }
+        }
+
+        .genRingCon03 {
+            position: absolute;
+
+            img {
+                width: 700px;
+                opacity: .5;
+                z-index: -6;
+            }
+        }
+
+        .genRingCon04 {
+            position: absolute;
+
+            img {
+                width: 850px;
+                opacity: .4;
+                z-index: -6;
+            }
+        }
+
+        .genRingCon05 {
+            position: absolute;
+
+            img {
+                width: 1000px;
+                opacity: .3;
+                z-index: -6;
+            }
+        }
+
+        .genRingCon06 {
+            position: absolute;
+
+            img {
+                width: 1150px;
+                opacity: .2;
+                z-index: -100;
+            }
+        }
+    }
 }
