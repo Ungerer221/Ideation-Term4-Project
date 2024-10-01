@@ -15,6 +15,18 @@ $test02BgColor: #98CD57;
         justify-content: center;
         align-items: center;
 
+        .titleCon{
+            display: flex;
+            gap: 10px;
+
+            img{
+                width: 70px;
+                position: relative;
+                bottom: 40px;
+                transform: rotate(-14deg);
+            }
+        }
+
         h1 {
             font-family: "Oswald", sans-serif;
             font-size: 64px;
@@ -35,6 +47,7 @@ $test02BgColor: #98CD57;
             // flex-wrap: wrap;
             align-items: center;
             user-select: none;
+            gap: 2px;
 
             .higlightedText {
                 padding: 5px 10px;
@@ -126,5 +139,8 @@ $test02BgColor: #98CD57;
         .masonryBox{
             margin-top: 20px;
         }
+    }
+    .active{
+        background-color: $test02BgColor;
     }
 }

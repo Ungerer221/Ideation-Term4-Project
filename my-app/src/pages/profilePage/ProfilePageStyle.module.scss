@@ -95,6 +95,12 @@ $test02BgColor: #98CD57;
             padding: 40px 20px;
             box-sizing: border-box;
 
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.452) 2px, transparent 0);
+            background-size: 30px 30px;
+            background-position: -5px -5px;
+
             .profileTileImgCon {
                 background-color: $backgroundColor;
                 border-radius: 100%;
