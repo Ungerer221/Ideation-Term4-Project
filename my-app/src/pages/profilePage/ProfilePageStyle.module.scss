@@ -1,8 +1,150 @@
+// Color Variables
+$primaryColor: #FF5C37;
+$softPrimaryColor: #FEBE92;
+$backgroundColor: #FCFBE9;
+$black: #000000;
+$white: #ffffff;
+$testBGColor: #9857CD;
+$test02BgColor: #98CD57;
 
-
-.ProfilePageMainContainer{
+.ProfilePageMainContainer {
     display: flex;
     justify-content: center;
-    align-items: center;
+    // align-items: center;
+    flex-direction: row;
+    gap: 10px;
     font-family: "Poppins", sans-serif;
+    width: 100%;
+    margin-bottom: 40px;
+
+    .portfolioPageLeftContainer {
+        width: 100%;
+
+        .ProfilePageBannerCon {
+            background-color: $primaryColor;
+            width: 100%;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 22px;
+        }
+
+        .portTextCon {
+            h2 {
+                text-transform: capitalize;
+            }
+        }
+
+        .protContent {
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+            gap: 10px;
+
+            .card {
+                background-color: $primaryColor;
+                width: 100%;
+                height: 350px;
+                border-radius: 22px;
+            }
+        }
+
+        .selectionBox {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            position: fixed;
+            bottom: 40px;
+            left: 40%;
+            padding: 8px 9px;
+            border-radius: 22px;
+            background-color: $softPrimaryColor;
+
+            button {
+                cursor: pointer;
+                padding: 10px;
+                outline: none;
+                border: none;
+                border-radius: 18px;
+                font-size: 16px;
+                font-family: "Poppins", sans-serif;
+                text-transform: capitalize;
+                background-color: transparent;
+            }
+
+            .postsSelectButton{
+                background-color: $primaryColor;
+                font-weight: 700;
+            }
+        }
+    }
+
+    .portfolioPageRightContainer {
+        .profilePageProfileTileCon {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 10px;
+            width: 325px;
+            height: 730px;
+            border-radius: 22px;
+            background-color: #FF5C37;
+            padding: 40px 20px;
+            box-sizing: border-box;
+
+            .profileTileImgCon {
+                background-color: $backgroundColor;
+                border-radius: 100%;
+                width: 150px;
+                height: 150px;
+            }
+
+            .profileTileUserInfoCon {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                color: $backgroundColor;
+
+                h2 {
+                    margin: 0;
+                    font-weight: 700;
+                    font-size: 24px;
+                }
+
+                p {
+                    margin: 0;
+                    font-size: 16px;
+                }
+
+                .followersandFollowingCon {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                    gap: 40px;
+                    color: $backgroundColor;
+
+                    .fInfoCon {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+
+                        p {
+                            margin: 0;
+                        }
+
+                        h3 {
+                            margin: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 }

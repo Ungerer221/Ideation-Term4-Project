@@ -29,11 +29,11 @@ const Navbar = () => {
                         className={`${styles["textWrapperTab"]} ${isActive("/") ? styles.active : ""}`}
                     >HOME</div>
                 </div>
-                <div className={styles.navTab} onClick={() => navigate("/profile")}>
+                <div className={styles.navTab} onClick={() => navigate("/community")}>
                     <div
                         // className={`${styles["text-wrapper-tab"]} ${isActive("/home") ? styles.active : ""}`}
-                        className={`${styles["textWrapperTab"]} ${isActive("/profile") ? styles.active : ""}`}
-                    >PROFILE</div>
+                        className={`${styles["textWrapperTab"]} ${isActive("/community") ? styles.active : ""}`}
+                    >COMMUNITY</div>
                 </div>
                 <div className={styles.navTab} onClick={() => navigate("/generate")}>
                     <div
@@ -41,11 +41,11 @@ const Navbar = () => {
                         className={`${styles["textWrapperTab"]} ${isActive("/generate") ? styles.active : ""}`}
                     >GENERATE</div>
                 </div>
-                <div className={styles.navTab} onClick={() => navigate("/community")}>
+                <div className={styles.navTab} onClick={() => navigate("/profile")}>
                     <div
                         // className={`${styles["text-wrapper-tab"]} ${isActive("/home") ? styles.active : ""}`}
-                        className={`${styles["textWrapperTab"]} ${isActive("/community") ? styles.active : ""}`}
-                    >COMMUNITY</div>
+                        className={`${styles["textWrapperTab"]} ${isActive("/profile") ? styles.active : ""}`}
+                    >PROFILE</div>
                 </div>
             </div>
             {/* menu con */}
