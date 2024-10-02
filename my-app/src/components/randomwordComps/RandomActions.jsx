@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 const RandomActions = () => {
-    const words = ['Chill', 'Relax with', 'Read', 'comprehend', 'Grapple'];
+    const words = ['Chill to', 'Relax with', 'Read', 'comprehend', 'Grapple'];
     const [currentWord, setCurrentWord] = useState('');
 
     useEffect(() => {

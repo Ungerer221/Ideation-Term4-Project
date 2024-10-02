@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from './ProfilePageStyle.module.scss'
 
 function ProfilePage() {
+
+    const [activeButton, setActiveButton] = useState('posts'); 
+
+    const handleButtonClick = (buttonName) => {
+        setActiveButton(buttonName);
+    };
 
     return (
         <div className={styles.ProfilePageMainContainer}>
@@ -39,9 +45,10 @@ function ProfilePage() {
                     <p>see more</p>
                 </div>
                 <div className={styles.selectionBox}>
-                    <button className={styles.postsSelectButton}>posts</button>
-                    <button>ideas</button>
-                    <button>saved</button>
+                    {/* <button className={styles.postsSelectButton}>posts</button> */}
+                    <button onClick={() => handleButtonClick('posts')} className={activeButton === 'posts' ? styles.activeButton : styles.postsSelectButton}>posts</button>
+                    <button onClick={() => handleButtonClick('ideas')} className={activeButton === 'ideas' ? styles.activeButton : ''}>ideas</button>
+                    <button onClick={() => handleButtonClick('saved')} className={activeButton === 'saved' ? styles.activeButton : ''}>saved</button>
                 </div>
             </div>
             {/* //* right side..................................................................... */}

@@ -32,21 +32,23 @@ function CommunityPage() {
 
     // would work on a booleen value
     // const buttonClick = false
-    const [buttonClick, setButtonClick] = useState(false);
+    const [activeButton, setActiveButton] = useState('all');
 
-    console.log(buttonClick)
-
-    const handleClick = () => {
-        setButtonClick(true); // Change the value to true
-    };
-
-    if (buttonClick === true) {
-        alert("deez");
-
+    const handleButtonClick = (buttonName) => {
+        setActiveButton(buttonName);
     }
-    const isActive = (buttonClick) => {
 
-    }
+
+    // changing the value of button click
+    // how are you going to change the styleing with css in js
+    // to show which class to render
+    // if false reneder style 1
+    // if true then render style 2
+    // search how to change what class an element uses an dhow to change it with an if statement
+
+    // const isActive = (buttonClick) => {
+
+    // }
 
     return (
         <div className={styles.communityPageMainContainer}>
@@ -69,10 +71,9 @@ function CommunityPage() {
             </div>
             <div className={styles.CommunityPageContentDisplay}>
                 <div className={styles.timeframeSwitch}>
-                    <button onClick={handleClick} className={styles.allTime}>all</button>
-                    <button onClick={handleClick} className={styles.todayTime}>today</button>
-                    {/* <button onClick={handleClick} className={`${styles["inActive"]} ${isActive(buttonClick == true) ? styles.active : ""}`}>all</button> */}
-                    {/* <button onClick={handleClick} className={`${styles["inActive"]} ${isActive() ? styles.active : ""}`}>today</button> */}
+                    {/* <button id="allButton" onClick={handleClick} className={styles.allTime}>all</button> */}
+                    <button onClick={() => handleButtonClick('all')} className={activeButton === 'all' ? styles.activeButton : styles.allSelectButton}>all</button>
+                    <button onClick={() => handleButtonClick('today')} className={activeButton === 'today' ? styles.activeButton : styles.allSelectButton}>today</button>
                 </div>
                 {/* <div className={styles.timeframeSwitch}>
                     <button className={styles.allTime}>all</button>

@@ -74,9 +74,13 @@ $test02BgColor: #98CD57;
                 background-color: transparent;
             }
 
-            .postsSelectButton{
+            .activeButton{
                 background-color: $primaryColor;
                 font-weight: 700;
+            }
+
+            .postsSelectButton{
+                background-color: $softPrimaryColor;
             }
         }
     }
