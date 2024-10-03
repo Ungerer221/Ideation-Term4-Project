@@ -8,26 +8,48 @@ import {
   Navigate,
 } from "react-router-dom";
 import { useState, useEffect } from "react";
-
+// firebase
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from './config/firebase';
 
 // Page imports
 import Homepage from './pages/Homepage/Homepage';
 import CommunityPage from './pages/CommunityPage/CommunityPage';
 import ProfilePage from './pages/profilePage/ProfilePage';
 import GeneratePage from './pages/generatePage/GeneratePage';
+import LoginPage from './pages/LoginPage/loginPage';
 
 // import components
 import Navbar from './components/navbar/Navbar';
 
+// could have it s that when launching the app you have to auth with the login and upon success then move to a different function
+
 function App() {
+
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    // check documentation on auth state change
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
+
   return (
-    // <div className="App"></div>
-    <Router>
-      <NavRoutes />
-    </Router>
+    <div className="App">
+      {user ? (
+        <Router>
+          <NavRoutes />
+        </Router>
+      ) : (
+        <LoginPage />
+      )}
+    </div>
   );
 }
 
+// navigation
 function NavRoutes() {
   const location = useLocation();
 
