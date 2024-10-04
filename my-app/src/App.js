@@ -18,6 +18,7 @@ import CommunityPage from './pages/CommunityPage/CommunityPage';
 import ProfilePage from './pages/profilePage/ProfilePage';
 import GeneratePage from './pages/generatePage/GeneratePage';
 import LoginPage from './pages/LoginPage/loginPage';
+import SignupPage from './pages/SignUpPage/signupPage';
 
 // import components
 import Navbar from './components/navbar/Navbar';
@@ -43,10 +44,25 @@ function App() {
           <NavRoutes />
         </Router>
       ) : (
-        <LoginPage />
+        <Router>
+          <AuthRoutes />
+        </Router>
       )}
     </div>
   );
+}
+
+function AuthRoutes() {
+  const location = useLocation();
+  
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<LoginPage />}></Route>
+        <Route path="/signup" element={<SignupPage />}></Route>
+      </Routes>
+    </>
+  )
 }
 
 // navigation
