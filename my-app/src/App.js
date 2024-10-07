@@ -39,7 +39,7 @@ function App() {
 
   return (
     <div className="App">
-      {user ? (
+      {/* {user ? (
         <Router>
           <NavRoutes />
         </Router>
@@ -47,14 +47,17 @@ function App() {
         <Router>
           <AuthRoutes />
         </Router>
-      )}
+      )} */}
+      <Router>
+        <NavRoutes />
+      </Router>
     </div>
   );
 }
 
 function AuthRoutes() {
   const location = useLocation();
-  
+
   return (
     <>
       <Routes>
