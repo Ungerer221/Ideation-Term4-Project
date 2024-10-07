@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from './loginPageStyle.module.scss';
 import { handleLogin } from "../../services/authService";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useAuth } from "../../contexts/authContext"; // from auth context
+// import { useAuth } from "../../contexts/authContext"; // from auth context
 
 // icons
 import Smily from '../../assets/icons/look-top-stroke-rounded.svg';
@@ -19,7 +19,7 @@ function LoginPage() {
 
     const navigate = useNavigate();
 
-    const { userLoggedIn } = useAuth();
+    // const { userLoggedIn } = useAuth();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -50,7 +50,8 @@ function LoginPage() {
                                         name="email"
                                         type="text"
                                         placeholder="Email"
-                                        onChange={setEmail}
+                                        onChange={newText => setEmail(newText)}
+                                    // value={setEmail}
                                     />
                                     <img src={loginIcon} alt="" />
                                 </div>
@@ -62,13 +63,15 @@ function LoginPage() {
                                         name="password"
                                         type="text"
                                         placeholder="Password"
-                                        onChange={setPassword}
+                                        onChange={newText => setPassword(newText)}
+                                    // value={setPassword}
                                     />
                                     <img src={lockMethod} alt="" />
                                 </div>
                             </div>
                             <div>
                                 <p>If you don't already have an account you can <button onClick={() => navigate("/signup")}>Signup</button> here</p>
+                                <button onClick={() => navigate("/test")}>TestPage</button>
                             </div>
                         </div>
                         <button onClick={login} className={styles.loginButton}>

@@ -1,9 +1,10 @@
 import { auth, db } from '../config/firebase';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithRedirect, signInWithPopup, getRedirectResult } from 'firebase/auth';
 import { doc, setDoc } from "firebase/firestore";
 
 // * Login Function /////////////////////////////////////////////////
 export const handleLogin = (email, password) => {
+    // * email-&-password //
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // Signed in
@@ -16,6 +17,19 @@ export const handleLogin = (email, password) => {
             const errorMessage = error.message;
             console.log(errorMessage)
         });
+
+    // * redirect //
+    // signInWithRedirect(auth, new GoogleAuthProvider());
+    // const userCred = await signInWithPopup(auth, new GoogleAuthProvider())
+    //     .then((userCredential) => {
+    //         const user = userCredential.user;
+    //         console.log("logged In User - " + user.email)
+    //     })
+    //     .catch((error) => {
+    //         const errorCode = error.code;
+    //         const errorMessage = error.message;
+    //         console.log(errorMessage)
+    //     });
 }
 
 // * Signup function ////////////////////////////////////////////////

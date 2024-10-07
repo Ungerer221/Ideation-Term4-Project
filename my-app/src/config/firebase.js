@@ -4,8 +4,9 @@ import { getFirestore } from "firebase/firestore";
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://firebase.google.com/docs/web/learn-more#config-object
+
+// Your web app's Firebase configuration
 const firebaseConfig = {
-  // ...
   apiKey: "AIzaSyDz-jnzz4tudbQRZhVf6ppSiq2soQn5WW0",
   authDomain: "ideation-project-a621f.firebaseapp.com",
   projectId: "ideation-project-a621f",
@@ -23,4 +24,4 @@ export const auth = getAuth(app);
 // database
 export const db = getFirestore(app);
 
-export{app};
+// export{app};

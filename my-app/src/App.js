@@ -22,24 +22,31 @@ import SignupPage from './pages/SignUpPage/signupPage';
 
 // import components
 import Navbar from './components/navbar/Navbar';
+import TestPage from './pages/Test/testPage';
 
 // could have it s that when launching the app you have to auth with the login and upon success then move to a different function
 
 function App() {
 
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
+  const [loggedIn, SetLoggedIn] = useState(false);
 
   useEffect(() => {
-    // check documentation on auth state change
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
-    return () => unsubscribe();
-  }, []);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        SetLoggedIn(true)
+        console.log("user Logged in... " + user.email)
+      } else {
+        SetLoggedIn(false)
+        console.log("no user logged in...")
+      }
+    })
+    return unsubscribe
+  })
 
   return (
     <div className="App">
-      {user ? (
+      {loggedIn ? (
         <Router>
           <NavRoutes />
         </Router>
@@ -64,6 +71,7 @@ function AuthRoutes() {
       <Routes>
         <Route path="/" element={<LoginPage />}></Route>
         <Route path="/signup" element={<SignupPage />}></Route>
+        <Route path="/test" element={<TestPage />}></Route>
       </Routes>
     </>
   )
