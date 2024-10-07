@@ -2,6 +2,7 @@
 $primaryColor: #FF5C37;
 $softPrimaryColor: #FEBE92;
 $backgroundColor: #FCFBE9;
+$backgroundInputColor: #e1d5c2;
 $black: #000000;
 $white: #ffffff;
 $testBGColor: #9857CD;
@@ -21,8 +22,9 @@ $test02BgColor: #98CD57;
         border-radius: 22px;
         margin-top: 40px;
         height: 90vh;
+
         // background-color: $test02BgColor;
-        img{
+        img {
             height: 100%;
         }
     }
@@ -32,13 +34,17 @@ $test02BgColor: #98CD57;
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        gap: 10px;
+        gap: 5px;
 
         h2 {
             font-size: 38px;
             font-weight: 700;
             text-transform: uppercase;
             font-family: "Oswald", sans-serif;
+        }
+
+        img {
+            width: 80px;
         }
     }
 
@@ -90,7 +96,7 @@ $test02BgColor: #98CD57;
                 .loginEmailInputCon {
                     display: flex;
                     flex-direction: column;
-                    justify-content:center;
+                    justify-content: center;
                     align-items: flex-start;
                     // width: 90%;
                     width: 90%;
@@ -103,7 +109,7 @@ $test02BgColor: #98CD57;
                         flex-direction: row;
                         justify-content: center;
                         align-items: center;
-                        background-color: $white;
+                        background-color: $backgroundInputColor;
                         border-radius: 12px;
                         padding: 8px 12px;
 
@@ -116,7 +122,8 @@ $test02BgColor: #98CD57;
                     }
                 }
             }
-            .loginButton{
+
+            .loginButton {
                 background-color: $primaryColor;
                 padding: 10px 20px;
                 border: none;
@@ -130,7 +137,7 @@ $test02BgColor: #98CD57;
                 gap: 10px;
                 cursor: pointer;
 
-                p{
+                p {
                     font-size: 24px;
                     font-weight: 700;
                     color: $backgroundColor;

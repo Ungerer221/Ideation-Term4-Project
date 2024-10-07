@@ -1,8 +1,8 @@
-import { auth } from '../config/firebase';
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
-import { addDoc, collection, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { auth, db } from '../config/firebase';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import {  doc,  setDoc } from "firebase/firestore";
 
-// * Login Function
+// * Login Function /////////////////////////////////////////////////
 export const handleLogin = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
@@ -18,16 +18,16 @@ export const handleLogin = (email, password) => {
         });
 }
 
-// * Signup function
+// * Signup function ////////////////////////////////////////////////
+// const auth = getAuth();
 export const handleSignup = (email, password) => {
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // Signed up 
             const user = userCredential.user;
-            console.log("User Auth Created Successfully - " + user.email)
             console.log("The User UID: " + user.uid)
-            // TODO: Call create new user and also send the user.UID
-            // createNewUser(userInfo,user.uid)
+            console.log("User Auth Created Successfully - " + user.email)
+
             // ...
         })
         .catch((error) => {
@@ -38,13 +38,14 @@ export const handleSignup = (email, password) => {
         });
 }
 
-// export const createNewUser = async (user,id) => {
-//     try {
-//         const docRef = await setDoc(doc(db, "users", id),user) 
-//         // console.log("user Doc created with ID: ", docRef.id);
-//         return true
-//     } catch (e) {
-//         console.error("Error adding user: ", e);
-//         return false
-//     }
-// }
+// * Create new user ////////////////////////////////////////////////
+export const createNewUser = async (user,id) => {
+    try {
+        const docRef = await setDoc(doc(db, "users", id),user)
+        // console.log("user Doc created with ID: ", docRef.id);
+        return true
+    } catch (e) {
+        console.error("Error adding user: ", e);
+        return false
+    }
+}

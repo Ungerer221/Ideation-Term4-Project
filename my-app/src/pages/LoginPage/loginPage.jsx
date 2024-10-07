@@ -30,7 +30,7 @@ function LoginPage() {
             </div>
             <div className={styles.sencondaryCon}>
                 <div className={styles.loginPageBannerCon}>
-                    <h2>Welcome to your new art idea generator</h2>
+                    <h2>Welcome back to your faveriot art idea generator</h2>
                     <img src={Smily} alt="" />
                 </div>
                 <div className={styles.loginFormContainer}>
@@ -43,14 +43,24 @@ function LoginPage() {
                             <div className={styles.loginEmailInputCon}>
                                 <label for="email">email</label>
                                 <div className={styles.emailInput}>
-                                    <input name="email" type="text" />
+                                    <input
+                                        name="email"
+                                        type="text"
+                                        placeholder="Email"
+                                        onChange={newText=>setEmail(newText)}
+                                    />
                                     <img src={loginIcon} alt="" />
                                 </div>
                             </div>
                             <div className={styles.loginEmailInputCon}>
                                 <label for="password">password</label>
                                 <div className={styles.emailInput}>
-                                    <input name="password" type="text" />
+                                    <input
+                                        name="password"
+                                        type="text"
+                                        placeholder="Password"
+                                        onChange={newText=>setPassword(newText)}
+                                    />
                                     <img src={lockMethod} alt="" />
                                 </div>
                             </div>
