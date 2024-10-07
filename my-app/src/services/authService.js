@@ -1,6 +1,6 @@
 import { auth, db } from '../config/firebase';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import {  doc,  setDoc } from "firebase/firestore";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider } from 'firebase/auth';
+import { doc, setDoc } from "firebase/firestore";
 
 // * Login Function /////////////////////////////////////////////////
 export const handleLogin = (email, password) => {
@@ -20,7 +20,7 @@ export const handleLogin = (email, password) => {
 
 // * Signup function ////////////////////////////////////////////////
 // const auth = getAuth();
-export const handleSignup = (email, password) => {
+export const handleSignup = async (email, password) => {
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // Signed up 
@@ -36,12 +36,12 @@ export const handleSignup = (email, password) => {
             console.log(errorMessage)
             // ..
         });
-}
+};
 
 // * Create new user ////////////////////////////////////////////////
-export const createNewUser = async (user,id) => {
+export const createNewUser = async (user, id) => {
     try {
-        const docRef = await setDoc(doc(db, "users", id),user)
+        const docRef = await setDoc(doc(db, "users", id), user)
         // console.log("user Doc created with ID: ", docRef.id);
         return true
     } catch (e) {

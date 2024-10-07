@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from './loginPageStyle.module.scss';
 import { handleLogin } from "../../services/authService";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../../contexts/authContext"; // from auth context
 
 // icons
 import Smily from '../../assets/icons/look-top-stroke-rounded.svg';
@@ -17,6 +18,8 @@ import LargeHaz from '../../assets/hazzardart/largehazzardart.svg';
 function LoginPage() {
 
     const navigate = useNavigate();
+
+    const { userLoggedIn } = useAuth();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -47,7 +50,7 @@ function LoginPage() {
                                         name="email"
                                         type="text"
                                         placeholder="Email"
-                                        onChange={newText=>setEmail(newText)}
+                                        onChange={setEmail}
                                     />
                                     <img src={loginIcon} alt="" />
                                 </div>
@@ -59,7 +62,7 @@ function LoginPage() {
                                         name="password"
                                         type="text"
                                         placeholder="Password"
-                                        onChange={newText=>setPassword(newText)}
+                                        onChange={setPassword}
                                     />
                                     <img src={lockMethod} alt="" />
                                 </div>
