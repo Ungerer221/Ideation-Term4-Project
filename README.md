@@ -1,8 +1,9 @@
 # Ideation-Term4-Project
- Ideation is a art idea generation app powered by Ai
 
 <img src="readmeAssets\logo.png">
 Logo (TM)
+
+Ideation is a generation app powered by Ai
 
 ## Technologies used
 These are the technologies i have decided to use for my project
@@ -19,21 +20,21 @@ These are the technologies i have decided to use for my project
 
 **Frontend:**
 
-React is the code frame work i have decided to use for the building of this web app
-
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+
+React is the code frame work i have decided to use for the building of this web app
 
 **Backend:**
 
-Firebase is the backend services i am using for this project
-
 ![Firebase](https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase)
+
+Firebase is the backend services i am using for this project
 
 ### Ai services used 
 
-Google Cloud 
-
 ![Google Cloud](https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white)
+
+Google Cloud 
 
 ## Setup
 
