@@ -1,5 +1,12 @@
 import { auth, db } from '../config/firebase';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithRedirect, signInWithPopup, getRedirectResult } from 'firebase/auth';
+import { 
+    createUserWithEmailAndPassword, 
+    signInWithEmailAndPassword, 
+    GoogleAuthProvider, 
+    signInWithRedirect, 
+    signInWithPopup, 
+    getRedirectResult 
+} from 'firebase/auth';
 import { doc, setDoc } from "firebase/firestore";
 
 // * Login Function /////////////////////////////////////////////////
