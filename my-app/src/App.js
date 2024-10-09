@@ -6,6 +6,7 @@ import {
   Route,
   useLocation,
   Navigate,
+  useNavigate,
 } from "react-router-dom";
 import { useState, useEffect } from "react";
 // firebase
@@ -27,6 +28,9 @@ import TestPage from './pages/Test/testPage';
 // could have it s that when launching the app you have to auth with the login and upon success then move to a different function
 
 function App() {
+
+  // const navigate = useNavigate();
+  // const location = useLocation();
 
   // const [user, setUser] = useState(null);
   const [loggedIn, SetLoggedIn] = useState(false);

@@ -26,30 +26,18 @@ export const handleLogin = (email, password) => {
             const errorMessage = error.message;
             console.log(errorMessage)
         });
-
-    // * redirect //
-    // signInWithRedirect(auth, new GoogleAuthProvider());
-    // const userCred = await signInWithPopup(auth, new GoogleAuthProvider())
-    //     .then((userCredential) => {
-    //         const user = userCredential.user;
-    //         console.log("logged In User - " + user.email)
-    //     })
-    //     .catch((error) => {
-    //         const errorCode = error.code;
-    //         const errorMessage = error.message;
-    //         console.log(errorMessage)
-    //     });
 }
 
 // * Signup function ////////////////////////////////////////////////
 // const auth = getAuth();
-export const handleSignup = async (email, password) => {
+export const handleSignup = async (email, password, userInfo) => {
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // Signed up 
             const user = userCredential.user;
             console.log("The User UID: " + user.uid)
             console.log("User Auth Created Successfully - " + user.email)
+            createNewUser(userInfo,user.uid)
 
             // ...
         })
@@ -70,6 +58,18 @@ export const createNewUser = async (user, id) => {
     } catch (e) {
         console.error("Error adding user: ", e);
         return false
+    }
+}
+
+// * Get Currently Logged in user ///////////////////////////////////
+export const getLoggedinUser = async () => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    if (user) {
+        const uid = user.uid
+        return uid
+    } else {
+        console.log("no found user");
     }
 }
 
