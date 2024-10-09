@@ -46,7 +46,7 @@ function App() {
 
   return (
     <div className="App">
-      {loggedIn ? (
+      {/* {loggedIn ? (
         <Router>
           <NavRoutes />
         </Router>
@@ -54,11 +54,11 @@ function App() {
         <Router>
           <AuthRoutes />
         </Router>
-      )}
+      )} */}
 
-      {/* <Router>
+      <Router>
         <NavRoutes />
-      </Router> */}
+      </Router>
     </div>
   );
 }

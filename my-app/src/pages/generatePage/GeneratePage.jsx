@@ -3,6 +3,7 @@ import styles from './GeneratePageStyle.module.scss'
 
 // icons
 import MenuIcon from '../../assets/menuIcon.svg'
+import ToolIcon from '../../assets/icons/wrench-01-stroke-rounded.svg'
 
 // assets
 import SmallHazzardArt from '../../assets/hazzardart/smallhazzardart.svg'
@@ -19,18 +20,20 @@ import GenRing06 from '../../assets/GenPage/Ellipse06.svg'
 
 function GeneratePage() {
 
-function power(){
-    alert("Power button Active")
-}
+    function power() {
+        alert("Power button Active")
+    }
 
     return (
         <div className={styles.GeneratePageMainContainer}>
+            {/* //* TITLE CONTAINER /////////////////////////////////////////// */}
             <div className={styles.titleContainer}>
                 <h1>Generate</h1>
                 <div>
                     {/* <img src={MenuIcon} alt="icon" /> */}
                 </div>
             </div>
+            {/* //* GENERATION BUTTON ///////////////////////////////////////// */}
             <div className={styles.generationButtonSection}>
 
                 <button onClick={power} className={styles.powerButtonCon}>
@@ -56,6 +59,59 @@ function power(){
                     <img src={GenRing06} alt="" />
                 </div>
 
+            </div>
+            {/* //* filter and selector panel ///////////////////////////////// */}
+            <div className={styles.filterSelectorPanelCon}>
+                <div className={styles.filterSelectorPanelTitelCon}>
+                    <h1>tool box</h1>
+                    <img src={ToolIcon} alt="" />
+                </div>
+                {/* //* categories // */}
+                <div className={styles.sectionContainer}>
+                    <h3>categories</h3>
+                    <div className={styles.divider}></div>
+                    <div className={styles.tagContainer}>
+                        <div className={styles.tag}>architexture</div>
+                        <div className={styles.tag}>Cars</div>
+                        <div className={styles.tag}>character</div>
+                        <div className={styles.tag}>plants life</div>
+                        <div className={styles.tag}>animal life</div>
+                        <div className={styles.tag}>enviroments</div>
+                        <div className={styles.tag}>fantasy art</div>
+                        <div className={styles.tag}>insects</div>
+                        <div className={styles.tag}>technology</div>
+                        <div className={styles.tag}>weapons</div>
+                        <div className={styles.tag}>devices</div>
+                    </div>
+                </div>
+                {/* //* monthly events // */}
+                <div className={styles.sectionContainer}>
+                    <h3>monthly events</h3>
+                    <div className={styles.divider}></div>
+                    <div className={styles.tagContainer}>
+                        <div className={styles.tag}>mer-may</div>
+                        <div className={styles.tag}>inktober</div>
+                        <div className={styles.tag}>silly september</div>
+                        <div className={styles.tag}>jewlry jully</div>
+                    </div>
+                </div>
+                {/* //* themes // */}
+                <div className={styles.sectionContainer}>
+                    <h3>themes</h3>
+                    <div className={styles.divider}></div>
+                    <div className={styles.tagContainer}>
+                        <div className={styles.tag}>dark</div>
+                        <div className={styles.tag}>freindly</div>
+                        <div className={styles.tag}>fun</div>
+                        <div className={styles.tag}>emotianal</div>
+                    </div>
+                </div>
+            </div>
+            {/* //* textoutput panel ////////////////////////////////////////// */}
+            <div className={styles.aiOutputPanel}>
+                <div>
+                    <p name="answer" id="aiAnswer" placeholder="response here" className={styles.textarea}>Response here</p>
+                </div>
             </div>
         </div>
     )

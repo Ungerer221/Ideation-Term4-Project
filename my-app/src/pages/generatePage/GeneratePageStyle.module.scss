@@ -1,6 +1,8 @@
 // Color Variables
 $primaryColor: #FF5C37;
+$softPrimaryColor: #FEBE92;
 $backgroundColor: #FCFBE9;
+$backgroundInputColor: #e1d5c2;
 $black: #000000;
 $white: #ffffff;
 $testBGColor: #9857CD;
@@ -13,7 +15,6 @@ $test02BgColor: #98CD57;
     justify-content: center;
     align-items: center;
     font-family: "Poppins", sans-serif;
-    // z-index: 1;
 
     .titleContainer {
         display: flex;
@@ -121,6 +122,120 @@ $test02BgColor: #98CD57;
                 opacity: .2;
                 z-index: -100;
             }
+        }
+    }
+
+    .filterSelectorPanelCon {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 10px;
+        background-color: $backgroundInputColor;
+        padding: 20px;
+        border-radius: 22px;
+        width: 400px;
+        position: fixed;
+        right: 40px;
+        top: 110px;
+        box-shadow:
+            0px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+            0px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+            0px 12.5px 10px rgba(0, 0, 0, 0.035),
+            0px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+            0px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+            0px 100px 80px rgba(0, 0, 0, 0.07);
+
+        .filterSelectorPanelTitelCon {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+
+            h1 {
+                font-family: "Oswald", sans-serif;
+                text-transform: uppercase;
+                margin: 0;
+            }
+        }
+
+
+        .sectionContainer {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+
+            h3 {
+                text-transform: capitalize;
+                margin: 0;
+            }
+
+            .divider {
+                width: 400px;
+                background-color: #000000;
+                opacity: 0.2;
+                border: 1px solid $black;
+                margin-top: 5px;
+                margin-bottom: 5px;
+            }
+
+            .tagContainer {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 5px;
+
+                .tag {
+                    background-color: $primaryColor;
+                    border-radius: 12px;
+                    padding: 5px 10px;
+                    color: $backgroundColor;
+                    border: 1px solid $backgroundInputColor;
+                    text-transform: capitalize;
+                    font-size: 12px;
+                    transition: all ease-in-out .1s;
+                    cursor: pointer;
+                }
+
+                .tag:hover {
+                    transform: scale(1.1);
+                }
+            }
+        }
+
+    }
+
+    .aiOutputPanel {
+        background-color: $backgroundInputColor;
+        padding: 10px;
+        width: 60%;
+        min-width: 100px;
+        height: fit-content;
+        border-radius: 12px;
+        margin: auto;
+        position: fixed;
+        // right: 0px;
+        bottom: 40px;
+        z-index: 15;
+        box-shadow:
+            0px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+            0px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+            0px 12.5px 10px rgba(0, 0, 0, 0.035),
+            0px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+            0px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+            0px 100px 80px rgba(0, 0, 0, 0.07);
+
+        .textarea {
+            width: 100%;
+            min-height: 100%;
+            height: fit-content;
+            background-color: transparent;
+            box-sizing: border-box;
+            outline: none;
+            border: none;
+            resize: vertical;
         }
     }
 }
