@@ -1,11 +1,13 @@
 import { auth, db } from '../config/firebase';
-import { 
-    createUserWithEmailAndPassword, 
-    signInWithEmailAndPassword, 
-    GoogleAuthProvider, 
-    signInWithRedirect, 
-    signInWithPopup, 
-    getRedirectResult 
+import {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    GoogleAuthProvider,
+    signInWithRedirect,
+    signInWithPopup,
+    getRedirectResult,
+    getAuth,
+    signOut
 } from 'firebase/auth';
 import { doc, setDoc } from "firebase/firestore";
 
@@ -69,4 +71,16 @@ export const createNewUser = async (user, id) => {
         console.error("Error adding user: ", e);
         return false
     }
+}
+
+// * Logout Current User ////////////////////////////////////////////
+export const handleLogout = () => {
+    const auth = getAuth();
+    signOut(auth).then(() => {
+        console.log('User signed out successfully');
+    }).catch((error) => {
+        // An error happened.
+        console.error('Error signing out:', error);
+    });
+    console.log("Executed Function")
 }

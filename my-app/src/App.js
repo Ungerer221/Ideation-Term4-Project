@@ -46,7 +46,7 @@ function App() {
 
   return (
     <div className="App">
-      {/* {loggedIn ? (
+      {loggedIn ? (
         <Router>
           <NavRoutes />
         </Router>
@@ -54,11 +54,11 @@ function App() {
         <Router>
           <AuthRoutes />
         </Router>
-      )} */}
+      )}
 
-      <Router>
+      {/* <Router>
         <NavRoutes />
-      </Router>
+      </Router> */}
     </div>
   );
 }
@@ -92,6 +92,7 @@ function NavRoutes() {
           <Route path="/profile" element={<ProfilePage />}></Route>
           <Route path="/community" element={<CommunityPage />}></Route>
           <Route path="/generate" element={<GeneratePage />}></Route>
+          <Route path="/test" element={<TestPage />}></Route>
         </Routes>
       </div>
     </>

@@ -9,12 +9,21 @@ import GenIcon from '../../assets/icons/genIcon.svg'
 // assets
 import SmallHazzardArt from '../../assets/hazzardart/smallhazzardart.svg'
 import LargeHazzArt from '../../assets/hazzardart/largehazzardart.svg'
+import { handleLogout } from "../../services/authService";
 
 
 function Homepage() {
 
     const navigate = useNavigate();
     const location = useLocation();
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const logout = () => {
+        handleLogout(email, password)
+        console.log("pressed")
+      }
 
     return (
         <div className={styles.HomepageMainContainer}>
@@ -55,6 +64,8 @@ function Homepage() {
             {/* //* More Info ///////////////////////////////////////////////////////////////////// */}
             <div>
                 <h1>warning</h1>
+                <p>logout here</p>
+                <button onClick={logout}>Logout</button>
             </div>
         </div>
     );

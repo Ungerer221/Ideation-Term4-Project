@@ -50,8 +50,8 @@ function LoginPage() {
                                         name="email"
                                         type="text"
                                         placeholder="Email"
-                                        onChange={newText => setEmail(newText)}
-                                    // value={setEmail}
+                                        value={email}
+                                        onChange={(e)=>setEmail(e.target.value)}
                                     />
                                     <img src={loginIcon} alt="" />
                                 </div>
@@ -63,7 +63,8 @@ function LoginPage() {
                                         name="password"
                                         type="text"
                                         placeholder="Password"
-                                        onChange={newText => setPassword(newText)}
+                                        value={password}
+                                        onChange={(e)=>setPassword(e.target.value)}
                                     // value={setPassword}
                                     />
                                     <img src={lockMethod} alt="" />

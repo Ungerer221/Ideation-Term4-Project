@@ -53,7 +53,8 @@ function SignupPage() {
                                         placeholder="username"
                                         name="username"
                                         type="text"
-                                        onChange={newText => setUsername(newText)}
+                                        value={username}
+                                        onChange={newText => setUsername(newText.target.value)}
                                     />
                                     <img src={loginIcon} alt="" />
                                 </div>
@@ -66,7 +67,8 @@ function SignupPage() {
                                         placeholder="Email"
                                         name="email"
                                         type="text"
-                                        onChange={newText => setEmail(newText)}
+                                        value={email}
+                                        onChange={newText => setEmail(newText.target.value)}
                                     />
                                     <img src={loginIcon} alt="" />
                                 </div>
@@ -79,7 +81,8 @@ function SignupPage() {
                                         placeholder="Shhhh it's a secret ;)"
                                         name="password"
                                         type="text"
-                                        onChange={newText => setPassword(newText)}
+                                        value={password}
+                                        onChange={newText => setPassword(newText.target.value)}
                                     />
                                     <img src={lockMethod} alt="" />
                                 </div>
