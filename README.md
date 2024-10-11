@@ -1,9 +1,17 @@
 # Ideation-Term4-Project
 
+[![npm version](https://img.shields.io/npm/v/@google-cloud/vision.svg)](https://www.npmjs.org/package/@google-cloud/vision)
+
 <img src="readmeAssets\logo.png">
 Logo (TM)
 
 Ideation is a generation app powered by Ai
+
+## Table of contents
+
+* [Technologies used](#Technologies-used)
+  * [Languages](#code-languages)
+  * [Frameworks](#code-frameworksgcloud init)
 
 ## Technologies used
 These are the technologies i have decided to use for my project

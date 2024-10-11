@@ -34,10 +34,11 @@ function TestPage() {
             <div>
                 <ul>
                     {users.map(user => (
-                        <li key={user.id}>User : {`${user.name} : ${user.email} : ${user.password}`}</li> // Adjust based on the structure of your user data
+                        <li key={user.id}>User : {`${user.username} : ${user.email} : ${user.password}`}</li> // Adjust based on the structure of your user data
                     ))}
                 </ul>
             </div>
+            <h1>current user</h1>
         </div>
     )
 }

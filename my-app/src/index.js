@@ -1,13 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// * Google cloud ///////////////////////////////////////////////////
+const DetectObject = () => {
+  const [imgeUri, setImageUri] = useState(null);
+  const [labels, setLabels] = useState([]); //will store the analised object labels 
+
+  // lets you choose your images 
+  const pickImage = async () => {
+    try {
+      // TODO : image picker code here
+    }catch(error){
+      
+    }
+  }
+
+}
+
+// * Defualt ////////////////////////////////////////////////////////
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
-    <App />
+  <App />
   // {/* </React.StrictMode> */}
 );
 
