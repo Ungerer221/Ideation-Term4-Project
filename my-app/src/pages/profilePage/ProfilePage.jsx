@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from './ProfilePageStyle.module.scss'
 import { getUserItem } from "../../services/userService";
 import { getLoggedinUser } from "../../services/authService";
+import UserPosts from "../../components/currentUserPost/currentUserPost";
 
 function ProfilePage() {
 
@@ -36,29 +37,10 @@ function ProfilePage() {
                     <p>banner</p>
                 </div>
                 <div className={styles.portTextCon}>
-                    <h2> you're posts</h2>
+                    {/* <h2> you're posts</h2> */}
                 </div>
                 <div className={styles.protContent}>
-                    <div className={styles.card}></div>
-                    <div className={styles.card}></div>
-                    <div className={styles.card}></div>
-                    <div className={styles.card}></div>
-                    <div className={styles.card}></div>
-                    <div className={styles.card}></div>
-                    <div className={styles.card}></div>
-                    <div className={styles.card}></div>
-                    <div className={styles.card}></div>
-                    <div className={styles.card}></div>
-                    <div className={styles.card}></div>
-                    <div className={styles.card}></div>
-                    <div className={styles.card}></div>
-                    <div className={styles.card}></div>
-                    <div className={styles.card}></div>
-                    <div className={styles.card}></div>
-                    <div className={styles.card}></div>
-                    <div className={styles.card}></div>
-                    <div className={styles.card}></div>
-                    <div className={styles.card}></div>
+                    <UserPosts />
                 </div>
                 <div>
                     <p>see more</p>
@@ -77,7 +59,8 @@ function ProfilePage() {
                         {/* <img src="" alt="" /> */}
                     </div>
                     <div className={styles.profileTileUserInfoCon}>
-                        <h2>username{}</h2>
+                        <h2>{user.username}</h2>
+                        <p>{user.email}</p>
                         <p>Bio</p>
                         <div className={styles.followersandFollowingCon}>
                             <div className={styles.fInfoCon}>

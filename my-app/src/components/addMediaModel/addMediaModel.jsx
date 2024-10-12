@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./addMediaModalStyle.module.scss";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { storage } from "../../config/firebase";
+import { db, storage } from "../../config/firebase";
 
 // MUI
 import PropTypes from 'prop-types';
@@ -13,6 +13,7 @@ import { Modal as BaseModal } from '@mui/base/Modal';
 import CommunityIconBubble from '../../assets/icons/bubble-chat-stroke-rounded.svg';
 import PlusDottedCircle from '../../assets/icons/add-circle-half-dot-stroke-rounded.svg';
 import { getAuth } from "firebase/auth";
+import { collection, doc, setDoc } from "firebase/firestore";
 
 const AddMediaModel = () => {
 
@@ -86,7 +87,7 @@ const AddMediaModel = () => {
     gap: 8px;
     overflow: hidden;
     background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-    border-radius: 8px;
+    border-radius: 32px;
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
     box-shadow: 0 4px 12px
       ${theme.palette.mode === 'dark' ? 'rgb(0 0 0 / 0.5)' : 'rgb(0 0 0 / 0.2)'};
@@ -125,7 +126,7 @@ const AddMediaModel = () => {
 
         // autherising the user for upload for the currently logged user
         const user = auth.currentUser;
-        if(!user){
+        if (!user) {
             alert("you need to log in to upload an image");
             return;
         }
@@ -146,12 +147,27 @@ const AddMediaModel = () => {
             },
             (error) => {
                 console.log("upload failed: ", error);
-            }, () => {
-                // when upload is completee, get the download url
-                getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-                    console.log("file available at", url);
-                    setDownloadURL(url); // save the download URL to the state
-                });
+            }, async () => {
+                // get the url
+                const url = await getDownloadURL(uploadTask.snapshot.ref);
+                setDownloadURL(url)
+                console.log("file available at", url);
+
+                // saveing the image url into the user posts collection
+                try {
+                    // can move to postservice.js
+                    const userPostsCollectionRef = collection(db, "users", user.uid, "posts");
+
+                    // create new doc
+                    const newPostRef = doc(userPostsCollectionRef); // auto id gen
+                    await setDoc(newPostRef, {
+                        imageUrl: url,
+                        timestamp: new Date(),
+                    });
+                    console.log("Post successfully add to firebase")
+                } catch (error) {
+                    console.error("Error adding post to Firestore:", error);
+                }
             }
         );
     };
@@ -177,8 +193,12 @@ const AddMediaModel = () => {
                         <label htmlFor="fileName"></label>
                         <input name="fileName" type="text" placeholder="File Name" />
                     </div>
+                    <div>
+                        <label htmlFor="fileName"></label>
+                        <input name="fileName" type="text" placeholder="Description" />
+                    </div>
                     <input type="file" onChange={handleFileChange} />
-                    <button onClick={handleUpload}>Upload</button>
+                    {/* //* Image preview /////////////////////////////////////////////// */}
                     {/* this is to display a preview of the image to show the user what image they have selected */}
                     {file && (
                         <div>
@@ -186,23 +206,15 @@ const AddMediaModel = () => {
                             <img
                                 src={URL.createObjectURL(file)}
                                 alt="Selected"
-                                style={{ width: "200px", height: "200px", objectFit: "cover" }}
+                                style={{ width: "200px", height: "200px", objectFit: "cover", borderRadius: '12px' }}
                             />
                         </div>
                     )}
-                    {/* this shows the progress of the upload */}
+                    {/* //* this shows the progress of the upload /////////////////////// */}
                     <div>
                         {uploadProgress > 0 && <p>Upload Progress: {uploadProgress}%</p>}
-                        {/* {downloadURL && (
-                            <p>
-                                File uploaded! Download URL:{" "}
-                                <a href={downloadURL} target="_blank" rel="noopener noreferrer">
-                                    {downloadURL}
-                                </a>
-                            </p>
-                        )} */}
                     </div>
-                    <button>clear</button>
+                    <button onClick={handleUpload} className={styles.uploadButton}>Post</button>
                 </ModalContent>
             </Modal>
 

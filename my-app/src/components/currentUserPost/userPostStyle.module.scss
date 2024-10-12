@@ -1,0 +1,23 @@
+// Color Variables
+$primaryColor: #FF5C37;
+$softPrimaryColor: #FEBE92;
+$backgroundColor: #FCFBE9;
+$black: #000000;
+$white: #ffffff;
+$testBGColor: #9857CD;
+$test02BgColor: #98CD57;
+
+.cardContainer{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    column-gap: 40px;
+    row-gap: 40px;
+
+    .card{
+        background-color: $test02BgColor;
+        border-radius: 12px;
+        overflow: hidden;
+        height: fit-content;
+        width: fit-content;
+    }
+}
