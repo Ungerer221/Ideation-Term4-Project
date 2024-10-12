@@ -45,10 +45,10 @@ export const getUserItem = async () => {
             var theUserData = { ...docSnap.data(), id: docSnap.id } // to get the id frfom the docsnap
             // usersData.push(theUserData)
             // return docSnap.data() 
-            return theUserData; // Directly return the document data
+            return theUserData; 
         } else {
             console.log("No such document!");
-            return null; // Return null if the document does not exist
+            return null; 
         }
     } catch (error) {
         console.error("Error getting UserItem: ", error);

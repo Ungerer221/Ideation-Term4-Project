@@ -7,6 +7,10 @@ import { useNavigate, useLocation } from "react-router-dom";
 import SmallLogo from '../../assets/LogoSmall.svg'
 import MenuIcon from '../../assets/menuIcon.svg'
 
+// MUI
+import { Modal } from '@mui/base/Modal';
+
+
 const Navbar = () => {
     const navigate = useNavigate();
     const location = useLocation();

@@ -11,9 +11,12 @@ import Box from '@mui/material/Box';
 import Masonry from '@mui/lab/Masonry';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
+import { Modal } from '@mui/base/Modal';
 
 // Icons
-import CommunityIconBubble from '../../assets/icons/bubble-chat-stroke-rounded.svg'
+import CommunityIconBubble from '../../assets/icons/bubble-chat-stroke-rounded.svg';
+import PlusDottedCircle from '../../assets/icons/add-circle-half-dot-stroke-rounded.svg';
+import AddMediaModel from "../../components/addMediaModel/addMediaModel";
 
 function CommunityPage() {
 
@@ -37,7 +40,6 @@ function CommunityPage() {
     const handleButtonClick = (buttonName) => {
         setActiveButton(buttonName);
     }
-
 
     // changing the value of button click
     // how are you going to change the styleing with css in js
@@ -103,6 +105,9 @@ function CommunityPage() {
                         ))}
                     </Masonry>
                 </div>
+            </div>
+            <div className={styles.ModalContainer}>
+                <AddMediaModel />
             </div>
         </div>
     )

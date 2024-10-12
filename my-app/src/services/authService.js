@@ -67,6 +67,7 @@ export const getLoggedinUser = async () => {
     const user = auth.currentUser;
     if (user) {
         const uid = user.uid
+        console.log(uid)
         return uid
     } else {
         console.log("no found user");

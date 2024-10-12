@@ -1,13 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from './ProfilePageStyle.module.scss'
+import { getUserItem } from "../../services/userService";
+import { getLoggedinUser } from "../../services/authService";
 
 function ProfilePage() {
 
-    const [activeButton, setActiveButton] = useState('posts'); 
+    const [user, setUser] = useState([]);
+    const [currentUser, setCurrentUser] = useState(null);
+
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const [activeButton, setActiveButton] = useState('posts');
 
     const handleButtonClick = (buttonName) => {
         setActiveButton(buttonName);
     };
+
+    // getting the current user data
+    const handleGettingUserData = async () => {
+        var userData = await getUserItem()
+        setUser(userData)
+    }
+    useEffect(() => {
+        handleGettingUserData() // give me an error of no document
+        getLoggedinUser() //displays the logged in user UID
+    }, []);
 
     return (
         <div className={styles.ProfilePageMainContainer}>
@@ -58,7 +77,7 @@ function ProfilePage() {
                         {/* <img src="" alt="" /> */}
                     </div>
                     <div className={styles.profileTileUserInfoCon}>
-                        <h2>username</h2>
+                        <h2>username{}</h2>
                         <p>Bio</p>
                         <div className={styles.followersandFollowingCon}>
                             <div className={styles.fInfoCon}>
