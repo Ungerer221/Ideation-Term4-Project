@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from './GeneratePageStyle.module.scss'
 
 // icons
@@ -15,10 +15,19 @@ import GenRing03 from '../../assets/GenPage/Ellipse03.svg'
 import GenRing04 from '../../assets/GenPage/Ellipse04.svg'
 import GenRing05 from '../../assets/GenPage/Ellipse05.svg'
 import GenRing06 from '../../assets/GenPage/Ellipse06.svg'
+import OpenAiResponse from "../../components/IdeaGenAi/ideaGenAi";
 
 
 
 function GeneratePage() {
+
+    const [prompt, setPrompt] = useState("");
+    const [response, setResponse] = useState("");
+
+    const handleSubmit = async () => {
+        const result = await OpenAiResponse(prompt);
+        setResponse(result);
+    };
 
     function power() {
         alert("Power button Active")
@@ -36,7 +45,7 @@ function GeneratePage() {
             {/* //* GENERATION BUTTON ///////////////////////////////////////// */}
             <div className={styles.generationButtonSection}>
 
-                <button onClick={power} className={styles.powerButtonCon}>
+                <button onClick={handleSubmit} className={styles.powerButtonCon}>
                     <img src={PowerButton} alt="" />
                 </button>
 
@@ -108,9 +117,21 @@ function GeneratePage() {
                 </div>
             </div>
             {/* //* textoutput panel ////////////////////////////////////////// */}
+            <div>
+                <textarea
+                    name=""
+                    value={prompt}
+                    onChange={(e) => {
+                        setPrompt(e.target.value)
+                    }}
+                    placeholder="enter prompt here..."
+                    id=""
+                ></textarea>
+            </div>
             <div className={styles.aiOutputPanel}>
                 <div>
                     <p name="answer" id="aiAnswer" placeholder="response here" className={styles.textarea}>Response here</p>
+                    <p>{response}</p>
                 </div>
             </div>
         </div>
