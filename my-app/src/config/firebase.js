@@ -9,6 +9,12 @@ import { getStorage } from "firebase/storage";
 // Your web app's Firebase configuration
 const firebaseConfig = {
     // paste...
+    apiKey: "AIzaSyDz-jnzz4tudbQRZhVf6ppSiq2soQn5WW0",
+    authDomain: "ideation-project-a621f.firebaseapp.com",
+    projectId: "ideation-project-a621f",
+    storageBucket: "ideation-project-a621f.appspot.com",
+    messagingSenderId: "575924669758",
+    appId: "1:575924669758:web:9479b600d70eca2343306f"
 };
 
 
@@ -22,7 +28,7 @@ export const auth = getAuth(app);
 export const db = getFirestore(app);
 
 const firebaseApp = getApp();
-const storage = getStorage(firebaseApp, "...");
+const storage = getStorage(firebaseApp, "gs://ideation-project-a621f.appspot.com/"); //past here
 
 export { storage };
 // export{app};
