@@ -111,6 +111,7 @@ const AddMediaModel = () => {
     );
 
     const [file, setFile] = useState(null);
+    const [imageName, setImageName] = useState(""); // State for image name
     const [uploadProgress, setUploadProgress] = useState(0);
     const [downloadURL, setDownloadURL] = useState("");
     const auth = getAuth();
@@ -118,11 +119,18 @@ const AddMediaModel = () => {
     const handleFileChange = (e) => {
         setFile(e.target.files[0]); // this is fetching the image we have selected and setting it to the usestate
         console.log("File selected:", e.target.files[0]);
+
     }
+
+    // const handleNameChange = (e) => {
+    //     setImageName(e.target.value);
+    // }
+
+
 
     // this could go in storace service file
     const handleUpload = () => {
-        if (!file) return; //?
+        if (!file || imageName) return; //?
 
         // autherising the user for upload for the currently logged user
         const user = auth.currentUser;
@@ -162,6 +170,7 @@ const AddMediaModel = () => {
                     const newPostRef = doc(userPostsCollectionRef); // auto id gen
                     await setDoc(newPostRef, {
                         imageUrl: url,
+                        imageName: imageName,
                         timestamp: new Date(),
                     });
                     console.log("Post successfully add to firebase")
@@ -191,7 +200,12 @@ const AddMediaModel = () => {
                     </p>
                     <div>
                         <label htmlFor="fileName"></label>
-                        <input name="fileName" type="text" placeholder="File Name" />
+                        <input
+                            type="text"
+                            placeholder="File Name"
+                            value={imageName}
+                            onChange={(e)=>setImageName(e.target.value)}
+                        />
                     </div>
                     <div>
                         <label htmlFor="fileName"></label>

@@ -170,11 +170,30 @@ $test02BgColor: #98CD57;
 
         .masonryBox {
             margin-top: 20px;
+            display: flex;
+            justify-content: center;
+
+            .imageCard {
+                background-color: $testBGColor;
+                // padding: 2px 20px;
+                border-radius: 22px;
+                width: 350px;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                img {
+                    // object-Fit: "cover";
+                    // height: "20px";
+                }
+            }
         }
     }
 
     .active {
-        background-color: $test02BgColor;
+        // background-color: $test02BgColor;
     }
 
     .addPostButtonCon {
@@ -218,7 +237,7 @@ $test02BgColor: #98CD57;
     .ModalContainer {
         position: fixed;
         margin: auto;
-        background-color: $test02BgColor;
+        // background-color: $test02BgColor;
         width: 500px;
         height: 200px;
 

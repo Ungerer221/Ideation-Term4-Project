@@ -17,6 +17,8 @@ import { Modal } from '@mui/base/Modal';
 import CommunityIconBubble from '../../assets/icons/bubble-chat-stroke-rounded.svg';
 import PlusDottedCircle from '../../assets/icons/add-circle-half-dot-stroke-rounded.svg';
 import AddMediaModel from "../../components/addMediaModel/addMediaModel";
+import { collectionGroup, getDocs } from "firebase/firestore";
+import { db } from "../../config/firebase";
 
 function CommunityPage() {
 
@@ -52,6 +54,29 @@ function CommunityPage() {
 
     // }
 
+    // ? can make it another componenet - calling all posts posted by users
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        const fetchAllPosts = async () => {
+            try {
+                const querySnapshot = await getDocs(collectionGroup(db, "posts")); // to query subcollections with same name accross all users
+
+                // extract each post
+                const allPostsData = querySnapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));
+
+                setPosts(allPostsData); // setting state
+            } catch (error) {
+                console.log("error fetching posts", error);
+            }
+        }
+        fetchAllPosts();
+    }, []);
+
+    // * return ////////////////////
     return (
         <div className={styles.communityPageMainContainer}>
             <div className={styles.communityTopBanner}>
@@ -82,26 +107,27 @@ function CommunityPage() {
                     <button className={styles.todayTime}>today</button>
                 </div> */}
                 <h4>check all the other humans creations</h4>
-                {/* 5-6 columns */}
-                {/* <div className={styles.contentDisplay}>
-                    <div className={styles.cardExample}></div>
-                    <div className={styles.cardExample}></div>
-                    <div className={styles.cardExample}></div>
-                    <div className={styles.cardExample}></div>
-                    <div className={styles.cardExample}></div>
-                    <div className={styles.cardExample}></div>
-                    <div className={styles.cardExample}></div>
-                    <div className={styles.cardExample}></div>
-                    <div className={styles.cardExample}></div>
-                    <div className={styles.cardExample}></div>
-                    <div className={styles.cardExample}></div>
-                </div> */}
                 <div className={styles.masonryBox}>
-                    <Masonry columns={6} spacing={2}>
+                    {/* <Masonry columns={6} spacing={2}>
                         {heights.map((height, index) => (
                             <Item className={styles.cardExample} key={index} sx={{ height }}>
                                 {index + 1}
                             </Item>
+                        ))}
+                    </Masonry> */}
+                    <Masonry columns={6} spacing={2}>
+                        {posts.map((post) => (
+                            <div key={post.id} className={styles.imageCard}>
+                                <img
+                                    src={post.imageUrl}
+                                    alt="Post"
+                                    style={{ width: "100%", height: "auto", objectFit: "cover", borderRadius: "12px", cursor: "pointer" }}
+                                />
+                                <div>
+                                    <p>{post.imageName}</p>
+                                    <p>Posted on: {post.timestamp?.toDate().toLocaleString()}</p> {/* Optional timestamp */}
+                                </div>
+                            </div>
                         ))}
                     </Masonry>
                 </div>
