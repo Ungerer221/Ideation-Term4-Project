@@ -14,9 +14,11 @@ import CommunityIconBubble from '../../assets/icons/bubble-chat-stroke-rounded.s
 import PlusDottedCircle from '../../assets/icons/add-circle-half-dot-stroke-rounded.svg';
 import { getAuth } from "firebase/auth";
 import { collection, doc, setDoc } from "firebase/firestore";
+import { newPost } from "../../services/postService";
 
 const AddMediaModel = () => {
 
+    // * Model code ///////////////////////////////////////////////////////////////////////////////
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -109,9 +111,12 @@ const AddMediaModel = () => {
     }
   `,
     );
+    // end of modal code
 
+    // * Actual Page code /////////////////////////////////////////////////////////////////////////
     const [file, setFile] = useState(null);
-    const [imageName, setImageName] = useState(""); // State for image name
+    const [imageName, setImageName] = useState(''); // State for image name
+    const [imageDescription, setImageDescription] = useState('');
     const [uploadProgress, setUploadProgress] = useState(0);
     const [downloadURL, setDownloadURL] = useState("");
     const auth = getAuth();
@@ -124,13 +129,14 @@ const AddMediaModel = () => {
 
     // const handleNameChange = (e) => {
     //     setImageName(e.target.value);
+    //     console.log(imageName)
     // }
 
 
 
     // this could go in storace service file
     const handleUpload = () => {
-        if (!file || imageName) return; //?
+        if (!file || !imageName) return;
 
         // autherising the user for upload for the currently logged user
         const user = auth.currentUser;
@@ -204,12 +210,18 @@ const AddMediaModel = () => {
                             type="text"
                             placeholder="File Name"
                             value={imageName}
-                            onChange={(e)=>setImageName(e.target.value)}
+                            onChange={(e) => setImageName(e.target.value)}
                         />
                     </div>
                     <div>
                         <label htmlFor="fileName"></label>
-                        <input name="fileName" type="text" placeholder="Description" />
+                        <input
+                            name="fileName"
+                            type="text"
+                            placeholder="Description"
+                            value={imageDescription}
+                            onChange={(e) => setImageDescription(e.target.value)}
+                        />
                     </div>
                     <input type="file" onChange={handleFileChange} />
                     {/* //* Image preview /////////////////////////////////////////////// */}

@@ -173,11 +173,15 @@ $test02BgColor: #98CD57;
             display: flex;
             justify-content: center;
 
+            .masonary{
+                
+            }
+
             .imageCard {
-                background-color: $testBGColor;
-                // padding: 2px 20px;
+                // background-color: $testBGColor;
+                padding: 2px 20px;
                 border-radius: 22px;
-                width: 350px;
+                width: 300px;
                 overflow: hidden;
                 display: flex;
                 flex-direction: column;

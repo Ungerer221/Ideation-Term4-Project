@@ -6,6 +6,10 @@ import anime from 'animejs';
 // icons
 import GenIcon from '../../assets/icons/genIcon.svg'
 
+// images 
+import DeadpoolBackground from '../../assets/images/helmat.jpg';
+import BackgorundImageOne from '../../assets/images/wizard.jpg';
+
 // assets
 import SmallHazzardArt from '../../assets/hazzardart/smallhazzardart.svg'
 import LargeHazzArt from '../../assets/hazzardart/largehazzardart.svg'
@@ -23,7 +27,7 @@ function Homepage() {
     const logout = () => {
         handleLogout(email, password)
         console.log("pressed")
-      }
+    }
 
     return (
         <div className={styles.HomepageMainContainer}>
@@ -48,8 +52,12 @@ function Homepage() {
                         <img src={SmallHazzardArt} alt="art" />
                     </div>
                     <div className={styles.rightsideLandingImageCon}>
-                        <div className={styles.imageConFront}></div>
-                        <div className={styles.imageConBack}></div>
+                        <div className={styles.imageConFront}>
+                            <img src={DeadpoolBackground} alt="" />
+                        </div>
+                        <div className={styles.imageConBack}>
+                            <img src={BackgorundImageOne} alt="" />
+                        </div>
                     </div>
                     {/* //* landing page button */}
                     <div className={styles.landingButtonCon}>

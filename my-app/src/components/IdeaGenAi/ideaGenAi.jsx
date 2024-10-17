@@ -8,9 +8,9 @@ import axios from 'axios';
 
 const { AzureOpenAI } = require("openai");
 
-const openAiApiKey = ''; // apikey
-const openAiApiEndpoint = ''; // endpoint
-const deploymentId = ``; // deployment
+const apiKey = '412bf0b463ad4eaaa6c99b5f22426886'; // apikey
+const endpoint = 'https://ideationai.openai.azure.com'; // endpoint
+const deploymentId = `ideation-Text-Gen`; // deployment
 const apiVersion = "2024-05-13";
 // require("dotenv/config");
 
@@ -52,20 +52,21 @@ const apiVersion = "2024-05-13";
 //     }
 // }
 
+// test response 
 const OpenAiResponse = async () => {
-    // const client = new AzureOpenAI({ endpoint, apiKey, apiVersion, deploymentId });
-    // const result = await client.chat.completions.create({
-    //     messages: [
-    //         { role: "system", content: "you are a helpfull assistant." },
-    //         { role: "user", content: "Does Azure OpenAI support customer managed keys?" },
-    //         { role: "assistant", content: "Yes, customer managed keys are supported by Azure OpenAI?" },
-    //         { role: "user", content: "Do other Azure AI services support this too?" },
-    //     ],
-    //     model: "",
-    // });
-    // for (const choice of result.choices) {
-    //     console.log(choice.message);
-    // }
+    const client = new AzureOpenAI({ endpoint, apiKey, apiVersion, deploymentId });
+    const result = await client.chat.completions.create({
+        messages: [
+            { role: "system", content: "you are a helpfull assistant." },
+            { role: "user", content: "Does Azure OpenAI support customer managed keys?" },
+            { role: "assistant", content: "Yes, customer managed keys are supported by Azure OpenAI?" },
+            { role: "user", content: "Do other Azure AI services support this too?" },
+        ],
+        model: "",
+    });
+    for (const choice of result.choices) {
+        console.log(choice.message);
+    }
 }
 
 export default OpenAiResponse;

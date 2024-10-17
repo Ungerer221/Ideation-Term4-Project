@@ -9,6 +9,7 @@ import MenuIcon from '../../assets/menuIcon.svg'
 
 // MUI
 import { Modal } from '@mui/base/Modal';
+import MenuModelComp from "../menuModelComp/menuModelComponent";
 
 
 const Navbar = () => {
@@ -18,6 +19,8 @@ const Navbar = () => {
     const isActive = (path) => {
         return location.pathname === path;
     };
+
+
 
     return (
         <div className={styles.NavbarMainCon}>
@@ -54,7 +57,7 @@ const Navbar = () => {
             </div>
             {/* menu con */}
             <div className={styles.navMenuCon}>
-                <img src={MenuIcon} alt="" />
+                <MenuModelComp/>
             </div>
         </div>
     );

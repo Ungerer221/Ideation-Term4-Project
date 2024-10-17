@@ -19,49 +19,29 @@ import PlusDottedCircle from '../../assets/icons/add-circle-half-dot-stroke-roun
 import AddMediaModel from "../../components/addMediaModel/addMediaModel";
 import { collectionGroup, getDocs } from "firebase/firestore";
 import { db } from "../../config/firebase";
+import PostDetailsModel from "../../components/postDetailsModel/postDetailModel";
+
+
 
 function CommunityPage() {
-
-    const heights = [150, 350, 670, 425, 450, 350, 425, 150, 670, 540, 150, 350, 670, 425, 450, 350, 425, 150, 670, 540];
-
-    const Item = styled(Paper)(({ theme }) => ({
-        backgroundColor: '#FF5C37',
-        ...theme.typography.body2,
-        padding: theme.spacing(0.5),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-        ...theme.applyStyles('dark', {
-            backgroundColor: '#1A2027',
-        }),
-    }));
-
     // would work on a booleen value
     // const buttonClick = false
+    const [posts, setPosts] = useState([]);
     const [activeButton, setActiveButton] = useState('all');
+    const [filteredPosts, setFilteredPosts] = useState([]);
 
-    const handleButtonClick = (buttonName) => {
-        setActiveButton(buttonName);
-    }
-
-    // changing the value of button click
-    // how are you going to change the styleing with css in js
-    // to show which class to render
-    // if false reneder style 1
-    // if true then render style 2
-    // search how to change what class an element uses an dhow to change it with an if statement
-
-    // const isActive = (buttonClick) => {
-
+    // const handleButtonClick = (buttonName) => {
+    //     setActiveButton(buttonName);
     // }
 
     // ? can make it another componenet - calling all posts posted by users
-    const [posts, setPosts] = useState([]);
 
     useEffect(() => {
+        // TODO move into post service 
         const fetchAllPosts = async () => {
+            // really understand what is happening here 
             try {
                 const querySnapshot = await getDocs(collectionGroup(db, "posts")); // to query subcollections with same name accross all users
-
                 // extract each post
                 const allPostsData = querySnapshot.docs.map((doc) => ({
                     id: doc.id,
@@ -69,12 +49,39 @@ function CommunityPage() {
                 }));
 
                 setPosts(allPostsData); // setting state
+                setFilteredPosts(allPostsData);
             } catch (error) {
                 console.log("error fetching posts", error);
             }
         }
         fetchAllPosts();
     }, []);
+
+    const handleModelOpen = () => {
+        <PostDetailsModel />
+        console.log("click")
+    }
+
+    // * FILTERING fUNCTIONALITY ////////////////////////////////////////////
+    const handleButtonClick = (filter) => {
+        setActiveButton(filter);
+
+        if (filter === 'today') {
+            const now = new Date();
+            const past24Hours = new Date(now.getTime() - (24 * 60 * 60 * 1000));
+
+            // Filter posts where the timestamp is greater than or equal to 24 hours ago
+            const todayPosts = posts.filter(posts => {
+                const postTimestamp = posts.timestamp?.toDate();
+                return postTimestamp && postTimestamp >= past24Hours;
+            });
+
+            setFilteredPosts(todayPosts);
+            console.log(todayPosts) // works but doesnt change the display
+        } else {
+            setFilteredPosts(posts);
+        }
+    };
 
     // * return ////////////////////
     return (
@@ -98,26 +105,14 @@ function CommunityPage() {
             </div>
             <div className={styles.CommunityPageContentDisplay}>
                 <div className={styles.timeframeSwitch}>
-                    {/* <button id="allButton" onClick={handleClick} className={styles.allTime}>all</button> */}
                     <button onClick={() => handleButtonClick('all')} className={activeButton === 'all' ? styles.activeButton : styles.allSelectButton}>all</button>
                     <button onClick={() => handleButtonClick('today')} className={activeButton === 'today' ? styles.activeButton : styles.allSelectButton}>today</button>
                 </div>
-                {/* <div className={styles.timeframeSwitch}>
-                    <button className={styles.allTime}>all</button>
-                    <button className={styles.todayTime}>today</button>
-                </div> */}
                 <h4>check all the other humans creations</h4>
                 <div className={styles.masonryBox}>
-                    {/* <Masonry columns={6} spacing={2}>
-                        {heights.map((height, index) => (
-                            <Item className={styles.cardExample} key={index} sx={{ height }}>
-                                {index + 1}
-                            </Item>
-                        ))}
-                    </Masonry> */}
-                    <Masonry columns={6} spacing={2}>
-                        {posts.map((post) => (
-                            <div key={post.id} className={styles.imageCard}>
+                    <Masonry columns={6} spacing={1} style={{ backgroundColor: "" }}>
+                        {filteredPosts.map((post) => (
+                            <div key={post.id} className={styles.imageCard} >
                                 <img
                                     src={post.imageUrl}
                                     alt="Post"
@@ -125,7 +120,7 @@ function CommunityPage() {
                                 />
                                 <div>
                                     <p>{post.imageName}</p>
-                                    <p>Posted on: {post.timestamp?.toDate().toLocaleString()}</p> {/* Optional timestamp */}
+                                    {/* <p>Posted on: {post.timestamp?.toDate().toLocaleString()}</p> //Optional timestamp */}
                                 </div>
                             </div>
                         ))}

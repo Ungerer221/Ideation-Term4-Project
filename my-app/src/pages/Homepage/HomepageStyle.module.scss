@@ -84,6 +84,11 @@ $test02BgColor: #98CD57;
                     border: 12px solid $backgroundColor;
                     z-index: 5;
                     animation: mymove 5s infinite;
+                    overflow: hidden;
+
+                    img{
+                        width: 100%;
+                    }
                 }
 
                 @keyframes imageConFront {
@@ -106,6 +111,13 @@ $test02BgColor: #98CD57;
                     border-radius: 22px;
                     border: 12px solid $backgroundColor;
                     z-index: 0;
+
+                    overflow: hidden;
+
+                    img{
+                        height: auto;
+                        margin: auto;
+                    }
                 }
             }
 
