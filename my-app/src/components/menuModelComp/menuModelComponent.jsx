@@ -121,8 +121,8 @@ const MenuModelComp = () => {
         color: white;
         transition: all 150ms ease;
         cursor: pointer;
-        background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-        border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+        background: ${theme.palette.mode === 'dark' ? grey[900] : '#FCFBE9'};
+        border: 0px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
         color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
         box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
       

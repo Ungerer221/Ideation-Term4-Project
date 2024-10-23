@@ -16,22 +16,64 @@ import GenRing04 from '../../assets/GenPage/Ellipse04.svg'
 import GenRing05 from '../../assets/GenPage/Ellipse05.svg'
 import GenRing06 from '../../assets/GenPage/Ellipse06.svg'
 import OpenAiResponse from "../../components/IdeaGenAi/ideaGenAi";
+import callAzureOpenAi from "../../servicesAi/APICall";
 
+
+// TODO : when the tag is selected then change style and if clicked again change back to prev and remove value from string constructor 
+// could do this but having it construct an array which is then converted to a string but the array will strore the selected values as the array will be mapped
+// TODO : div that shows the key words that have been selected
 
 
 function GeneratePage() {
 
-    const [prompt, setPrompt] = useState("");
-    const [response, setResponse] = useState("");
+    // const [prompt, setPrompt] = useState("");
+    // const [response, setResponse] = useState("");
+    const [messageContent, setMessageContent] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const [prompt, setPrompt] = useState('');
+    const [selectedTags, setSelectedTags] = useState([]); // setting empty array for selected tags to be stored in an array
 
-    const handleSubmit = async () => {
-        const result = await OpenAiResponse(prompt);
-        setResponse(result);
-    };
 
-    function power() {
-        alert("Power button Active")
+    const handleInputChange = (question) => {
+        // setPrompt(question.target.value);
     }
+
+    const fetchData = async () => {
+        console.log('Prompt before calling API:', prompt);
+        // setLoading(true);
+        // setError(null)
+        try {
+            const content = await callAzureOpenAi(prompt);
+            setMessageContent(content);
+
+            console.log("frontend response", content);
+        } catch (error) {
+            setError(error.message);
+        }
+    }
+
+    const [combinedPromptString, setCombinedPromptString] = useState('can you give me an art idea based on these keywords: ');
+
+    // the tag value string function - setting the prompt to the constructed string
+    const handleTagClick = (value) => {
+        setCombinedPromptString(prevString => prevString + value);
+        setPrompt(prevString => prevString + value);
+    }
+    
+    // the click that will store the value in the array 
+    // TODO then we must that that value an input it back into the string Prompt compiler
+    const handleTagStoreClick = (tag) => {
+        setSelectedTags(prevTags => [...prevTags, tag]); // add tag to array
+    }
+
+    // reseting the prompt string function
+    const handleStringReset = () => {
+        // setCombinedPromptString('can you give me an art idea based on these keywords: ');
+        setPrompt('');
+    }
+
+    console.log(combinedPromptString)
 
     return (
         <div className={styles.GeneratePageMainContainer}>
@@ -42,10 +84,25 @@ function GeneratePage() {
                     {/* <img src={MenuIcon} alt="icon" /> */}
                 </div>
             </div>
+            {/* //* Showing the selected tages  */}
+            {prompt && (
+                <div className={styles.selectedPromptDisplayCon}>
+                    <h2>Key words you've selected</h2>
+                    <p>prompt</p>
+                    <p>{prompt}</p>
+                    <p>tag</p>
+                    {selectedTags.map((tag, index) => (
+                        <div key={index} className={styles.selectedTag}>
+                            {tag}
+                        </div>
+                    ))}
+                    <button onClick={handleStringReset } className={styles.clearselectedPropmtBTN}>clear</button>
+                </div>
+            )}
             {/* //* GENERATION BUTTON ///////////////////////////////////////// */}
             <div className={styles.generationButtonSection}>
 
-                <button onClick={handleSubmit} className={styles.powerButtonCon}>
+                <button onClick={fetchData} className={styles.powerButtonCon}>
                     <img src={PowerButton} alt="" />
                 </button>
 
@@ -80,17 +137,21 @@ function GeneratePage() {
                     <h3>categories</h3>
                     <div className={styles.divider}></div>
                     <div className={styles.tagContainer}>
-                        <div className={styles.tag}>architexture</div>
-                        <div className={styles.tag}>Cars</div>
-                        <div className={styles.tag}>character</div>
-                        <div className={styles.tag}>plants life</div>
-                        <div className={styles.tag}>animal life</div>
-                        <div className={styles.tag}>enviroments</div>
-                        <div className={styles.tag}>fantasy art</div>
-                        <div className={styles.tag}>insects</div>
-                        <div className={styles.tag}>technology</div>
-                        <div className={styles.tag}>weapons</div>
-                        <div className={styles.tag}>devices</div>
+                        <div className={styles.tag} onClick={() => handleTagClick('architexture, ')}>architexture</div>
+                        <div className={styles.tag} onClick={() => handleTagClick('car, ')}>Cars</div>
+                        <div className={styles.tag} onClick={() => handleTagClick('character, ')}>character</div>
+                        <div className={styles.tag} onClick={() => handleTagClick('plant, ')}>plants</div>
+                        <div className={styles.tag} onClick={() => handleTagClick('animal, ')}>animal</div>
+                        <div className={styles.tag} onClick={() => handleTagClick('enviroment, ')}>enviroments</div>
+                        <div className={styles.tag} onClick={() => handleTagClick('fantasy, ')}>fantasy</div>
+                        <div className={styles.tag} onClick={() => handleTagClick('insect, ')}>insects</div>
+                        <div className={styles.tag} onClick={() => handleTagClick('technology, ')}>technology</div>
+                        <div className={styles.tag} onClick={() => handleTagClick('weapon, ')}>weapons</div>
+                        <div className={styles.tag} onClick={() => handleTagClick('devices, ')}>devices</div>
+                        <div className={styles.tag} onClick={() => handleTagClick('book, ')}>book</div>
+                        <div className={styles.tag} onClick={() => handleTagClick('bottle, ')}>bottle</div>
+                        <div className={styles.tag} onClick={() => handleTagClick('armor, ')}>armor</div>
+
                     </div>
                 </div>
                 {/* //* monthly events // */}
@@ -109,29 +170,35 @@ function GeneratePage() {
                     <h3>themes</h3>
                     <div className={styles.divider}></div>
                     <div className={styles.tagContainer}>
-                        <div className={styles.tag}>dark</div>
-                        <div className={styles.tag}>freindly</div>
-                        <div className={styles.tag}>fun</div>
-                        <div className={styles.tag}>emotianal</div>
+                        <div className={styles.tag} onClick={() => handleTagClick('dark, ')}>dark</div>
+                        <div className={styles.tag} onClick={() => handleTagClick('dangerous, ')}>dangerous</div>
+                        <div className={styles.tag} onClick={() => handleTagClick('slime, ')}>slime</div>
+                        <div className={styles.tag} onClick={() => handleTagClick('freindly, ')}>freindly</div>
+                        <div className={styles.tag} onClick={() => handleTagClick('fun, ')}>fun</div>
+                        <div className={styles.tag} onClick={() => handleTagClick('emotianal')}>emotianal</div>
+                        <div className={styles.tag} onClick={() => handleTagClick('rich')}>rich</div>
                     </div>
                 </div>
             </div>
             {/* //* textoutput panel ////////////////////////////////////////// */}
             <div>
-                <textarea
+                {/* <textarea
                     name=""
-                    value={prompt}
-                    onChange={(e) => {
-                        setPrompt(e.target.value)
-                    }}
+                    // onChange={(e) => {
+                    //     setPrompt(e.target.value)
+                    // }}
                     placeholder="enter prompt here..."
-                    id=""
-                ></textarea>
+                    value={prompt}
+                    onChange={handleInputChange}
+                ></textarea> */}
             </div>
             <div className={styles.aiOutputPanel}>
                 <div>
-                    <p name="answer" id="aiAnswer" placeholder="response here" className={styles.textarea}>Response here</p>
-                    <p>{response}</p>
+                    <div>
+                        {messageContent && <p>{messageContent}</p>}
+                    </div>
+                    {/* <p name="answer" id="aiAnswer" placeholder="response here" className={styles.textarea}>Response here</p>
+                    <p>{response}</p> */}
                 </div>
             </div>
         </div>

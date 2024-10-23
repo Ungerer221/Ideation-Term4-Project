@@ -8,8 +8,8 @@ import { getStorage } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    // paste...
-    
+    //* paste...
+ 
 };
 // const firebaseConfig = process.env.firebaseConfig;
 
@@ -24,7 +24,7 @@ export const auth = getAuth(app);
 export const db = getFirestore(app);
 
 const firebaseApp = getApp();
-const storage = getStorage(firebaseApp, ""); //past here
+const storage = getStorage(firebaseApp, ""); //*past here
 
 export { storage };
 // export{app};
