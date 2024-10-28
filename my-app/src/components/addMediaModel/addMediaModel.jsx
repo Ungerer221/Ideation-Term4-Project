@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import styles from "./addMediaModalStyle.module.scss";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { db, storage } from "../../config/firebase";
+import axios from 'axios';
 
 // MUI
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { styled, css } from '@mui/system';
+import { styled, css, color } from '@mui/system';
 import { Modal as BaseModal } from '@mui/base/Modal';
 
 // Icons
@@ -15,6 +16,7 @@ import PlusDottedCircle from '../../assets/icons/add-circle-half-dot-stroke-roun
 import { getAuth } from "firebase/auth";
 import { collection, doc, setDoc } from "firebase/firestore";
 import { newPost } from "../../services/postService";
+import handleImageAnalysis from "../../servicesAi/VisionAiService";
 
 const AddMediaModel = () => {
 
@@ -111,7 +113,7 @@ const AddMediaModel = () => {
     }
   `,
     );
-    // end of modal code
+    // ! end of modal code //////////////////////////////////
 
     // * Actual Page code /////////////////////////////////////////////////////////////////////////
     const [file, setFile] = useState(null);
@@ -121,11 +123,73 @@ const AddMediaModel = () => {
     const [downloadURL, setDownloadURL] = useState("");
     const auth = getAuth();
 
-    const handleFileChange = (e) => {
+    // usestates for vision ai
+    const [imageData, setImageData] = useState('');
+    const [result, setResult] = useState([]);
+    const [labels, setLabels] = useState([]);
+    const [imageColors, setImageColors] = useState([]);
+
+    // * API KEy///////////
+    const apiKey = ""
+
+    const handleFileChange = async (e) => {
         setFile(e.target.files[0]); // this is fetching the image we have selected and setting it to the usestate
         console.log("File selected:", e.target.files[0]);
 
+        const file = e.target.files[0]
+        const reader = new FileReader();
+
+        reader.onloadend = async () => {
+            setImageData(reader.result); // updates the imageData state with the Base64-encoded image.
+            // prepare the request body
+            const requestBody = {
+                "requests": [
+                    {
+                        "image": {
+                            "content": reader.result.split(',')[1],
+                        },
+                        "features": [
+                            {
+                                "type": 'LABEL_DETECTION',
+
+                                "maxResults": 10,
+                            },
+                            {
+                                "type": "IMAGE_PROPERTIES",
+                                "maxResults": 5,
+                            }
+                        ],
+                    },
+                ],
+            };
+
+            try {
+                const response = await axios.post(
+                    `https://vision.googleapis.com/v1/images:annotate?key=${apiKey}`,
+                    requestBody,
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    }
+                );
+
+                setResult(response.data)
+
+                const iLabels = response.data.responses[0].labelAnnotations || [];
+                setLabels(iLabels);
+
+                const dominantColors = response.data.responses[0].imagePropertiesAnnotation?.dominantColors?.colors || [];
+                setImageColors(dominantColors);
+
+            } catch (error) {
+                console.error('Error making request to Vision API', error);
+            }
+        };
+
+        reader.readAsDataURL(file);
     }
+    console.log(result)
 
     // const handleNameChange = (e) => {
     //     setImageName(e.target.value);
@@ -177,6 +241,8 @@ const AddMediaModel = () => {
                     await setDoc(newPostRef, {
                         imageUrl: url,
                         imageName: imageName,
+                        imageLabels: labels,
+                        imageColors: imageColors,
                         timestamp: new Date(),
                     });
                     console.log("Post successfully add to firebase")

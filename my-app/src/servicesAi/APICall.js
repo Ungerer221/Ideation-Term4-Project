@@ -31,7 +31,7 @@ const callAzureOpenAi = async (prompt) => {
     // * calling the api with the fetch method
     try {
         // TODO: dont upload this Endpoint
-        const response = await fetch(``, {//* paste
+        const response = await fetch(``, {//* paste //////
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

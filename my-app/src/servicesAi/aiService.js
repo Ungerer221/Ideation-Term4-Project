@@ -20,8 +20,8 @@
 // const { ImageAnnotatorClient } = require('@google-cloud/vision').v1;
 
 //  export const visionAi = async () => {
-//     const API_KEY = "AIzaSyDw849ZEKbT_Qjg2P_dPu7YAQKmQoK0elI" // past own api key
-//     const GOOGLE_URL = `https://texttospeech.googleapis.com/v1/text:synthesize?key=${AIzaSyDw849ZEKbT_Qjg2P_dPu7YAQKmQoK0elI};`
+//     const API_KEY = "" // past own api key
+//     const GOOGLE_URL = `https://texttospeech.googleapis.com/v1/text:synthesize?key=${};`
     
 //     // Imports the Google Cloud client library
 //     const vision = require('@google-cloud/vision');
