@@ -15,7 +15,9 @@ import GenRing03 from '../../assets/GenPage/Ellipse03.svg'
 import GenRing04 from '../../assets/GenPage/Ellipse04.svg'
 import GenRing05 from '../../assets/GenPage/Ellipse05.svg'
 import GenRing06 from '../../assets/GenPage/Ellipse06.svg'
+
 import OpenAiResponse from "../../components/IdeaGenAi/ideaGenAi";
+
 import callAzureOpenAi from "../../servicesAi/APICall";
 
 

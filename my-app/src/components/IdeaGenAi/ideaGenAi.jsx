@@ -8,10 +8,10 @@ import axios from 'axios';
 
 const { AzureOpenAI } = require("openai");
 
-const apiKey = '412bf0b463ad4eaaa6c99b5f22426886'; // apikey
-const endpoint = 'https://ideationai.openai.azure.com'; // endpoint
-const deploymentId = `ideation-Text-Gen`; // deployment
-const apiVersion = "2024-05-13";
+const apiKey = ''; // apikey
+const endpoint = ''; // endpoint
+const deploymentId = ``; // deployment
+const apiVersion = "";
 // require("dotenv/config");
 
 
@@ -22,7 +22,7 @@ const apiVersion = "2024-05-13";
 
 // * method 01 //////////////////////////////////////////////////////////////////
 // const OpenAiResponse = async (prompt) => {
-//     const azureApiURL = `${openAiApiEndpoint}/openai/deployments/${deploymentId}/completions?api-version=2023-05-15`; // the api url variable
+//     const azureApiURL = ``; // the api url variable
 //     const headers = {
 //         'Content-Type': 'application/json',
 //         'Authorization': `Bearer ${openAiApiKey}`
