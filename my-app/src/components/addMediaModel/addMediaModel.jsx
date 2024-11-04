@@ -129,7 +129,7 @@ const AddMediaModel = () => {
     const [labels, setLabels] = useState([]);
     const [imageColors, setImageColors] = useState([]);
 
-    // * API KEy///////////
+    // * API KEy///////////////////////////////////////////////////////////////////////////////////
     const apiKey = ""
 
     const handleFileChange = async (e) => {
@@ -200,7 +200,7 @@ const AddMediaModel = () => {
 
     // this could go in storace service file
     const handleUpload = () => {
-        if (!file || !imageName) return;
+        if (!file) return;
 
         // autherising the user for upload for the currently logged user
         const user = auth.currentUser;
@@ -276,7 +276,7 @@ const AddMediaModel = () => {
                             type="text"
                             placeholder="File Name"
                             value={imageName}
-                            onChange={(e) => setImageName(e.target.value)}
+                            onChange={(newText) => setImageName(newText.target.value)}
                         />
                     </div>
                     <div>

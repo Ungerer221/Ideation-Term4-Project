@@ -50,7 +50,7 @@ const UserPosts = () => {
                                 alt="User Post"
                                 style={{ width: "100%", height: "auto", objectFit: "cover" }}
                             />
-                            <p>Posted on: {post.timestamp?.toDate().toLocaleString()}</p> {/* Optional timestamp */}
+                            {/* <p>Posted on: {post.timestamp?.toDate().toLocaleString()}</p> */}
                         </div>
                     ))}
                 </div>

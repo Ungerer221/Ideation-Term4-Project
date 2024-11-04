@@ -19,13 +19,28 @@ function SignupPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [date, setDate] = useState(new Date());
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleUserCreation = async () => {
         var items = { username, email, password, date }
         var success = handleSignup(email, password, items)
+        navigate('/');
     }
 
-    const signup = () => { handleUserCreation() }
+    const signup = () => {
+        // if the user types a password that is too short 
+        if (password.length < 6) {
+            setErrorMessage("password must be at least 6 characters long.")
+            return
+        }
+        setErrorMessage('');
+        handleUserCreation();
+        
+
+    }
+
+    const [showPassword, setShowPassword] = useState(false);
+    const togglePasswordVisibility = () => setShowPassword((prev) => !prev);
 
     return (
         <div className={styles.signupPageMainContainer}>
@@ -76,11 +91,12 @@ function SignupPage() {
                             {/* //* PASSWORD */}
                             <div className={styles.signupEmailInputCon}>
                                 <label for="password">password</label>
+                                    {errorMessage && <p style={{ color: 'red', margin:'0', fontSize:'12px' }}>{errorMessage}</p>}
                                 <div className={styles.emailInput}>
                                     <input
                                         placeholder="Shhhh it's a secret ;)"
                                         name="password"
-                                        type="text"
+                                        type={showPassword ? "text" : "password"}
                                         value={password}
                                         onChange={newText => setPassword(newText.target.value)}
                                     />
@@ -88,7 +104,7 @@ function SignupPage() {
                                 </div>
                             </div>
                             <div>
-                                <p>If you don't already have an account you can <button onClick={() => navigate("/")}>Login</button> here</p>
+                                <p>If you don't already have an account you can <button onClick={() => navigate("/login")} className={styles.loginNavBtn}>Login</button> here</p>
                             </div>
                         </div>
                         <button onClick={signup} className={styles.signupButton}>

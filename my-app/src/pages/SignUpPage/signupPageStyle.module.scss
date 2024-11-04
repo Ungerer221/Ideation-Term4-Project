@@ -116,6 +116,14 @@ $test02BgColor: #98CD57;
                         }
                     }
                 }
+                .loginNavBtn{
+                    background-color: transparent;
+                    outline: none;
+                    border: none;
+                    text-decoration: underline;
+                    color: $primaryColor;
+                    cursor: pointer;
+                }
             }
             .signupButton{
                 background-color: $primaryColor;

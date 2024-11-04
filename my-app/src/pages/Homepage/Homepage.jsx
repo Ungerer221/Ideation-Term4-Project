@@ -39,9 +39,8 @@ function Homepage() {
                         <h1>ideation</h1>
                         <h2>un-blocked</h2>
                         <p>
-                            Borem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
-                            Class aptent taciti sociosqu
+                            Youre new art idea genertor Tool. Feeling that dreaded art block or just want to change things up a bit and experiment with new ideas
+                            this is the place for you.
                         </p>
                     </div>
                     <img src={LargeHazzArt} alt="art" />
@@ -70,10 +69,9 @@ function Homepage() {
                 </div>
             </div>
             {/* //* More Info ///////////////////////////////////////////////////////////////////// */}
-            <div>
-                <h1>warning</h1>
-                <p>logout here</p>
-                <button onClick={logout}>Logout</button>
+            <div className={styles.homePageLogoutSection}>
+                <h1>!warning!</h1>
+                <button onClick={logout} className={styles.homeLogouButton}>Logout</button>
             </div>
         </div>
     );

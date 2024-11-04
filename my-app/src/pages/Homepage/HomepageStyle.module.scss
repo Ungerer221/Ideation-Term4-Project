@@ -5,6 +5,7 @@ $black: #000000;
 $white: #ffffff;
 $testBGColor: #9857CD;
 $test02BgColor: #98CD57;
+$dangerColor: #FA6464;
 
 ::-webkit-scrollbar {
     display: none;
@@ -12,6 +13,7 @@ $test02BgColor: #98CD57;
 
 .HomepageMainContainer {
     margin-bottom: 60px;
+
     .homePageMainLandingContainer {
         display: flex;
         flex-direction: row;
@@ -86,7 +88,7 @@ $test02BgColor: #98CD57;
                     animation: mymove 5s infinite;
                     overflow: hidden;
 
-                    img{
+                    img {
                         width: 100%;
                     }
                 }
@@ -114,7 +116,7 @@ $test02BgColor: #98CD57;
 
                     overflow: hidden;
 
-                    img{
+                    img {
                         height: auto;
                         margin: auto;
                     }
@@ -174,6 +176,47 @@ $test02BgColor: #98CD57;
                     justify-content: space-between;
                 }
             }
+        }
+    }
+
+    .homePageLogoutSection {
+
+        h1 {
+            text-transform: uppercase;
+        }
+
+        .homeLogouButton {
+            display: inline-block;
+            // padding: 0.9rem 1.8rem;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 700;
+            color: $backgroundColor;
+            border: 3px solid rgb(252, 70, 100);
+            cursor: pointer;
+            position: relative;
+            background-color: transparent;
+            text-decoration: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .homeLogouButton::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(252, 70, 100);
+            transform: translateX(-100%);
+            transition: all .3s;
+            z-index: -1;
+        }
+
+        .homeLogouButton:hover::before {
+            transform: translateX(0);
         }
     }
 }

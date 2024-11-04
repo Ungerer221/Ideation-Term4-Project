@@ -14,6 +14,7 @@ import { MenuItem as BaseMenuItem, menuItemClasses } from '@mui/base/MenuItem';
 import { styled } from '@mui/system';
 import PropTypes from 'prop-types';
 import { handleLogout } from "../../services/authService";
+import { useNavigate } from "react-router-dom";
 
 const MenuModelComp = () => {
 
@@ -161,13 +162,14 @@ const MenuModelComp = () => {
 `;
 
     // end of modal code
-
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const logout = () => {
         handleLogout(email, password)
         console.log("pressed")
+        navigate('/');
     }
 
     return (

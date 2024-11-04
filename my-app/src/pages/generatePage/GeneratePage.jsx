@@ -19,6 +19,9 @@ import GenRing06 from '../../assets/GenPage/Ellipse06.svg'
 import OpenAiResponse from "../../components/IdeaGenAi/ideaGenAi";
 
 import callAzureOpenAi from "../../servicesAi/APICall";
+import { getLoggedinUser } from "../../services/authService";
+import { addDoc, collection, doc } from "firebase/firestore";
+import { db } from "../../config/firebase";
 
 
 // TODO : when the tag is selected then change style and if clicked again change back to prev and remove value from string constructor 
@@ -30,7 +33,7 @@ function GeneratePage() {
 
     // const [prompt, setPrompt] = useState("");
     // const [response, setResponse] = useState("");
-    const [messageContent, setMessageContent] = useState(null);
+    const [messageContent, setMessageContent] = useState(''); // changed to empty string to prevent null error 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [prompt, setPrompt] = useState('');
@@ -62,7 +65,7 @@ function GeneratePage() {
         setCombinedPromptString(prevString => prevString + value);
         setPrompt(prevString => prevString + value);
     }
-    
+
     // the click that will store the value in the array 
     // TODO then we must that that value an input it back into the string Prompt compiler
     const handleTagStoreClick = (tag) => {
@@ -77,6 +80,42 @@ function GeneratePage() {
 
     console.log(combinedPromptString)
 
+    // * Saving gen idea //////////////////////////////////////////////////////
+    const handleSaveGenIdea = async () => {
+        try {
+            const currentUserID = await getLoggedinUser();
+            console.log(currentUserID)
+
+            // ref subcollection 
+            const userDocRef = doc(db, 'users', currentUserID);
+            const messagesCollectionRef = collection(userDocRef, 'ideas');
+
+            // adding the content to the ideas subcollection 
+            await addDoc(messagesCollectionRef, {
+                content: messageContent, // from usestate
+                timestamp: new Date(), // to ad a time stamp
+            });
+            console.log('idea saved')
+        } catch (error) {
+            console.error('Error saving message:', error);
+        }
+    };
+
+    // * Parsing the content //////////////////////////////////////////////////
+    const parseContent = (content) => {
+        const sections = content.split(/\*\*(.+?)\*\*/).slice(1);
+        const parsed = [];
+
+        for (let i = 0; i < sections.length; i += 2) {
+            parsed.push({
+                label: sections[i],
+                content: sections[i + 1] ? sections[i + 1].trim() : "",
+            });
+        }
+        return parsed
+    };
+    const parsedContent = parseContent(messageContent);
+
     return (
         <div className={styles.GeneratePageMainContainer}>
             {/* //* TITLE CONTAINER /////////////////////////////////////////// */}
@@ -90,15 +129,15 @@ function GeneratePage() {
             {prompt && (
                 <div className={styles.selectedPromptDisplayCon}>
                     <h2>Key words you've selected</h2>
-                    <p>prompt</p>
+                    {/* <p>prompt</p> */}
                     <p>{prompt}</p>
-                    <p>tag</p>
+                    {/* <p>tag</p> */}
                     {selectedTags.map((tag, index) => (
                         <div key={index} className={styles.selectedTag}>
                             {tag}
                         </div>
                     ))}
-                    <button onClick={handleStringReset } className={styles.clearselectedPropmtBTN}>clear</button>
+                    <button onClick={handleStringReset} className={styles.clearselectedPropmtBTN}>clear</button>
                 </div>
             )}
             {/* //* GENERATION BUTTON ///////////////////////////////////////// */}
@@ -197,7 +236,23 @@ function GeneratePage() {
             <div className={styles.aiOutputPanel}>
                 <div>
                     <div>
-                        {messageContent && <p>{messageContent}</p>}
+                        {messageContent &&
+                            <div>
+                                <p>{messageContent}</p>
+                                <input 
+                                type="text" 
+                                placeholder="reply here"
+                                />
+                                <button onClick={handleSaveGenIdea}>save</button>
+                            </div>
+                        }
+                        {/* {parsedContent.map((section, index) => (
+                            <div key={index} style={{ marginBottom: '1em' }} className={styles.aiOutputPanelResponseCon}>
+                                <h3>{section.label}</h3>
+                                <p>{section.content}</p>
+                                <button onClick={handleSaveGenIdea}>save</button>
+                            </div>
+                        ))} */}
                     </div>
                     {/* <p name="answer" id="aiAnswer" placeholder="response here" className={styles.textarea}>Response here</p>
                     <p>{response}</p> */}

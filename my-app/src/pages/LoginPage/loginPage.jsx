@@ -24,7 +24,13 @@ function LoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const login = () => { handleLogin(email, password) }
+    const login = () => { 
+        handleLogin(email, password)
+        navigate('/');
+     }
+
+    const [showPassword, setShowPassword] = useState(false);
+    const togglePasswordVisibility = () => setShowPassword((prev) => !prev);
 
     return (
         <div className={styles.loginPageMainContainer}>
@@ -51,7 +57,7 @@ function LoginPage() {
                                         type="text"
                                         placeholder="Email"
                                         value={email}
-                                        onChange={(e)=>setEmail(e.target.value)}
+                                        onChange={(e) => setEmail(e.target.value)}
                                     />
                                     <img src={loginIcon} alt="" />
                                 </div>
@@ -61,18 +67,20 @@ function LoginPage() {
                                 <div className={styles.emailInput}>
                                     <input
                                         name="password"
-                                        type="text"
+                                        type={showPassword ? "text" : "password"}
                                         placeholder="Password"
                                         value={password}
-                                        onChange={(e)=>setPassword(e.target.value)}
+                                        onChange={(e) => setPassword(e.target.value)}
                                     // value={setPassword}
                                     />
-                                    <img src={lockMethod} alt="" />
+                                    <button onClick={togglePasswordVisibility}>
+                                        <img src={lockMethod} alt="" />
+                                    </button>
                                 </div>
                             </div>
                             <div>
-                                <p>If you don't already have an account you can <button onClick={() => navigate("/signup")}>Signup</button> here</p>
-                                <button onClick={() => navigate("/test")}>TestPage</button>
+                                <p>If you don't already have an account you can <button onClick={() => navigate("/")} className={styles.signUpNavBtn}>Signup</button> here</p>
+                                {/* <button onClick={() => navigate("/test")}>TestPage</button> */}
                             </div>
                         </div>
                         <button onClick={login} className={styles.loginButton}>

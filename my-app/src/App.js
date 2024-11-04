@@ -24,6 +24,7 @@ import SignupPage from './pages/SignUpPage/signupPage';
 // import components
 import Navbar from './components/navbar/Navbar';
 import TestPage from './pages/Test/testPage';
+import PostDetailPage from './pages/postDetailsPage/PostDetailsPage';
 
 // could have it s that when launching the app you have to auth with the login and upon success then move to a different function
 
@@ -73,8 +74,8 @@ function AuthRoutes() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<LoginPage />}></Route>
-        <Route path="/signup" element={<SignupPage />}></Route>
+        <Route path="/login" element={<LoginPage />}></Route>
+        <Route path="/" element={<SignupPage />}></Route>
         <Route path="/test" element={<TestPage />}></Route>
       </Routes>
     </>
@@ -97,6 +98,7 @@ function NavRoutes() {
           <Route path="/community" element={<CommunityPage />}></Route>
           <Route path="/generate" element={<GeneratePage />}></Route>
           <Route path="/test" element={<TestPage />}></Route>
+          <Route path='/postpage/:userId/:postId' element={<PostDetailPage />}></Route>
         </Routes>
       </div>
     </>

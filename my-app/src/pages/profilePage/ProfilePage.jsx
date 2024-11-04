@@ -3,6 +3,10 @@ import styles from './ProfilePageStyle.module.scss'
 import { getUserItem } from "../../services/userService";
 import { getLoggedinUser } from "../../services/authService";
 import UserPosts from "../../components/currentUserPost/currentUserPost";
+import UserGenIdeas from "../../components/currentUserIdeas/CurrentUserGenIdeas";
+
+// Spinner
+import { SpinnerCircularSplit } from 'spinners-react';
 
 function ProfilePage() {
 
@@ -29,6 +33,22 @@ function ProfilePage() {
         getLoggedinUser() //displays the logged in user UID
     }, []);
 
+    // * Loading Spinner //////////////////////////////////
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        // Simulate data fetching
+        const fetchData = async () => {
+            setLoading(true); // Start loading
+            // Replace this with your actual data fetch logic
+            await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate fetch delay
+            setLoading(false); // End loading
+        };
+
+        fetchData();
+    }, [activeButton]);
+
+    // const ideasContent = `Certainly! It sounds like you're interested...`; 
+
     return (
         <div className={styles.ProfilePageMainContainer}>
             {/* //* Left side...................................................................... */}
@@ -39,8 +59,18 @@ function ProfilePage() {
                 <div className={styles.portTextCon}>
                     {/* <h2> you're posts</h2> */}
                 </div>
-                <div className={styles.protContent}>
-                    <UserPosts />
+                <div className={styles.protContentCon}>
+                    {/* Conditional rendering based on the view */}
+                    {loading ? (
+                        <div>
+                            <SpinnerCircularSplit />
+                        </div>
+                    ) : (
+                        <div className={styles.protContent}>
+                            {activeButton === 'posts' ? <UserPosts /> : <UserGenIdeas />}
+                        </div>
+
+                    )}
                 </div>
                 <div>
                     <p>see more</p>

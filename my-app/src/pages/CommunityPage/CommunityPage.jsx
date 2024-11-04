@@ -17,13 +17,15 @@ import { Modal } from '@mui/base/Modal';
 import CommunityIconBubble from '../../assets/icons/bubble-chat-stroke-rounded.svg';
 import PlusDottedCircle from '../../assets/icons/add-circle-half-dot-stroke-rounded.svg';
 import AddMediaModel from "../../components/addMediaModel/addMediaModel";
-import { collectionGroup, getDocs } from "firebase/firestore";
+import { collection, collectionGroup, getDocs } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import PostDetailsModel from "../../components/postDetailsModel/postDetailModel";
+import { useNavigate } from "react-router-dom";
 
 
 
 function CommunityPage() {
+    const navigate = useNavigate();
     // would work on a booleen value
     // const buttonClick = false
     const [posts, setPosts] = useState([]);
@@ -38,22 +40,52 @@ function CommunityPage() {
 
     useEffect(() => {
         // TODO move into post service 
+
+        // Error - is that it doenst load immediatly when the page is loaded 
+        // reason: The delayed loading of posts occurs because getDocs(postsCollection) inside the userSnapshot.forEach loop is asynchronous, but it’s not awaited.
+        // Since forEach doesn't handle asynchronous code well on its own, the allPosts array is being populated asynchronously, 
+        // which means setPosts(allPosts) and setFilteredPosts(allPosts) are executed before all posts data has been fully retrieved.
+        // FIX Chat says to use a Promise.all to await all getDocs
+        // 1. Use map instead of forEach to build an array of promises, one for each user's posts collection.
+        // 2. Use Promise.all to wait for all the asynchronous getDocs calls to resolve before setting the state.
+        
         const fetchAllPosts = async () => {
             // really understand what is happening here 
             try {
-                const querySnapshot = await getDocs(collectionGroup(db, "posts")); // to query subcollections with same name accross all users
-                // extract each post
-                const allPostsData = querySnapshot.docs.map((doc) => ({
-                    id: doc.id,
-                    ...doc.data(),
-                }));
+                const allPosts = []
+                const userSnapshot = await getDocs(collection(db, 'users'));
 
-                setPosts(allPostsData); // setting state
-                setFilteredPosts(allPostsData);
+                // old
+                // userSnapshot.forEach((userDoc) => {
+                //     const userId = userDoc.id;
+                //     const postsCollection = collection(db, 'users', userId, 'posts');
+                // * fix
+                const postsPromises = userSnapshot.docs.map((userDoc)=>{
+                    const userId = userDoc.id;
+                    const postsCollection = collection(db, 'users', userId, 'posts');
+                
+
+                    return getDocs(postsCollection).then((postsSnapshot) => {
+                        postsSnapshot.forEach((postDoc) => {
+                            allPosts.push({
+                                ...postDoc.data(),
+                                id: postDoc.id,
+                                userId: userId,
+                            });
+                        });
+                    });
+                });
+
+                await Promise.all(postsPromises); // wait for all promises
+
+                setPosts(allPosts);
+                setFilteredPosts(allPosts);
+
             } catch (error) {
                 console.log("error fetching posts", error);
             }
         }
+
         fetchAllPosts();
     }, []);
 
@@ -82,6 +114,12 @@ function CommunityPage() {
             setFilteredPosts(posts);
         }
     };
+    console.table(posts)
+
+
+    function testing() {
+        alert("clicked" + posts.id)
+    }
 
     // * return ////////////////////
     return (
@@ -112,13 +150,14 @@ function CommunityPage() {
                 <div className={styles.masonryBox}>
                     <Masonry columns={6} spacing={1} style={{ backgroundColor: "" }}>
                         {filteredPosts.map((post) => (
-                            <div key={post.id} className={styles.imageCard} >
+                            <div key={post.id} className={styles.imageCard} onClick={() => navigate(`/postpage/${post.userId}/${post.id}`)}>
                                 <img
                                     src={post.imageUrl}
                                     alt="Post"
                                     style={{ width: "100%", height: "auto", objectFit: "cover", borderRadius: "12px", cursor: "pointer" }}
                                 />
                                 <div>
+                                    <p>{post.userId}</p>
                                     <p>{post.imageName}</p>
                                     {/* <p>Posted on: {post.timestamp?.toDate().toLocaleString()}</p> //Optional timestamp */}
                                 </div>

@@ -41,17 +41,18 @@ $test02BgColor: #98CD57;
         left: 20px;
         top: 250px;
 
-        .selectedTag{
+        .selectedTag {
             background-color: #9857CD;
         }
-        .clearselectedPropmtBTN{
+
+        .clearselectedPropmtBTN {
             border-radius: 22px;
             outline: none;
             border: none;
             padding: 10px;
             cursor: pointer;
         }
-        
+
     }
 
     .generationButtonSection {
@@ -230,24 +231,28 @@ $test02BgColor: #98CD57;
     }
 
     .aiOutputPanel {
-        background-color: $backgroundInputColor;
+        // background-color: $backgroundInputColor;
         padding: 10px;
         width: 60%;
         min-width: 100px;
         height: fit-content;
         border-radius: 12px;
         margin: auto;
-        position: fixed;
-        // right: 0px;
-        bottom: 40px;
-        z-index: 15;
-        box-shadow:
-            0px 2.8px 2.2px rgba(0, 0, 0, 0.02),
-            0px 6.7px 5.3px rgba(0, 0, 0, 0.028),
-            0px 12.5px 10px rgba(0, 0, 0, 0.035),
-            0px 22.3px 17.9px rgba(0, 0, 0, 0.042),
-            0px 41.8px 33.4px rgba(0, 0, 0, 0.05),
-            0px 100px 80px rgba(0, 0, 0, 0.07);
+        position: relative;
+        top: 300px;
+
+
+        .aiOutputPanelResponseCon {
+            background-color: $backgroundInputColor;
+            z-index: 15;
+            box-shadow:
+                0px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+                0px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+                0px 12.5px 10px rgba(0, 0, 0, 0.035),
+                0px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+                0px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+                0px 100px 80px rgba(0, 0, 0, 0.07);
+        }
 
         .textarea {
             width: 100%;
