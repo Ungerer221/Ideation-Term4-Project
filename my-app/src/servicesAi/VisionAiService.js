@@ -41,7 +41,7 @@
 //         try {
 //             // Axios Start
 //             const response = await axios.post(
-//                 `https://vision.googleapis.com/v1/images:annotate?key=${apiKey}`,
+//                 ``,
 //                 requestBody,
 //                 {
 //                     headers: {

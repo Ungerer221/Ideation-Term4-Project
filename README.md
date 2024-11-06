@@ -59,7 +59,7 @@ Azure Open Ai
 
 # Setup
 
-### prerequisites
+### Prerequisites
 1. Visual studio code 
 2. Firebase account
 3. Google cloud account
@@ -130,12 +130,42 @@ create a .env file and insert all your endpoint urls and api keys
 #### Step 05:
 run your project with ```npm start```
 
-## Design Software Used
 
-![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
+
+# Features & Functionality 
+
+## Authentication 
+The user can sign up and create a new account or if they already have an account they can login with the login form. The site makes use of firebases Athentication services and When a user creats an account their info is also added to the data base as to later be fetched for the user profile page.
+
+<img src='readmeAssets\featurenFunctionaltyScreenshots (1).png'>
+
+## User Profile
+This is the page where the user can view all their previouse posts and profile information.
+
+<img src='readmeAssets\featurenFunctionaltyScreenshots (4).png'>
+
+## Community 
+The commuinty page allows everyone to view all the posts postd by the community as well as view each post and its data.
+
+<img src='readmeAssets\featurenFunctionaltyScreenshots (2).png'>
+
+## Posting
+The User is able to post the artwork they have made from their generated idea to the community.
+
+<img src='readmeAssets\postingfunction.png'>
+
+## Idea Generation 
+In the site the user can use the azure api to generate art ideas using the key words they have chosen on the tools panel.
+
+<img src='readmeAssets\featurenFunctionaltyScreenshots (3).png'>
+
 
 # Branding
 <img src="readmeAssets\Frame 97.jpg" >
+
+## Design Software Used
+
+![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
 
 # Conceptulisation Process
 
@@ -147,7 +177,11 @@ run your project with ```npm start```
 
 ## Wireframes
 
+### Home Page
+<img src='readmeAssets\home page.png'>
+
 ## ER Diagram
+<img src='readmeAssets\ER Diagram.png'>
 
 ## User Flow Diagram
 <img src="readmeAssets\user journey.png">
@@ -209,6 +243,9 @@ The Future Plans for The site.
 # Final Outcome
 
 ## Mockups
+<img src='readmeAssets\mockup (1).png'>
+<img src='readmeAssets\mockup (2).png'>
+<img src='readmeAssets\mockup (3).png'>
 
 ## Video Demonstration
 
