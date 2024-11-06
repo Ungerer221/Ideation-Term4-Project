@@ -6,6 +6,8 @@ $black: #000000;
 $white: #ffffff;
 $testBGColor: #9857CD;
 $test02BgColor: #98CD57;
+$dangerColor: #FA6464;
+
 
 .postDetailsPageMainContainer {
     display: flex;
@@ -14,6 +16,15 @@ $test02BgColor: #98CD57;
     align-items: flex-start;
     justify-content: space-between;
     // background-color: #98CD57;
+
+    .postDetailsNavBackButton{
+        background-color: $primaryColor;
+        outline: none;
+        border: none;
+        padding: 8px 18px;
+        border-radius: 8px;
+        cursor: pointer;
+    }
 
     .postDetailsImageSection {
         width: 50%;

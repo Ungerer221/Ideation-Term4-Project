@@ -213,7 +213,7 @@ The Future Plans for The site.
 ## Video Demonstration
 
 # Author
-![Ungerer Hattingh](https://github.com/Ungerer221)
+[Ungerer Hattingh](https://github.com/Ungerer221)
 
 # Contact
 you can contact me at...

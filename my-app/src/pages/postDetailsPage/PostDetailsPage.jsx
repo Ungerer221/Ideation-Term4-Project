@@ -5,6 +5,8 @@ import { db } from "../../config/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import styles from './postDetailsPageStyle.module.scss';
 
+import BackIcon from '../../assets/icons/link-backward-stroke-rounded.svg'
+
 function PostDetailPage() {
     const navigate = useNavigate();
 
@@ -64,7 +66,9 @@ function PostDetailPage() {
     return (
         <div className={styles.postDetailsPageMainContainer}>
             {/* to prevent rendering undefined or null data */}
-            <button onClick={() => navigate('/community')}>Back</button>
+            <button onClick={() => navigate('/community')} className={styles.postDetailsNavBackButton}>
+                <img src={BackIcon} alt="" />
+            </button>
             <div className={styles.postDetailsImageSection}>
                 <div className={styles.PostDetailImageCon}>
                     <img src={post?.imageUrl || ""} alt="Post" />

@@ -22,6 +22,9 @@ import { db } from "../../config/firebase";
 import PostDetailsModel from "../../components/postDetailsModel/postDetailModel";
 import { useNavigate } from "react-router-dom";
 
+// Spinner
+import { SpinnerCircularSplit } from "spinners-react";
+
 
 
 function CommunityPage() {
@@ -38,6 +41,7 @@ function CommunityPage() {
 
     // ? can make it another componenet - calling all posts posted by users
 
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
         // TODO move into post service 
 
@@ -48,9 +52,9 @@ function CommunityPage() {
         // FIX Chat says to use a Promise.all to await all getDocs
         // 1. Use map instead of forEach to build an array of promises, one for each user's posts collection.
         // 2. Use Promise.all to wait for all the asynchronous getDocs calls to resolve before setting the state.
-        
         const fetchAllPosts = async () => {
             // really understand what is happening here 
+            setLoading(true)
             try {
                 const allPosts = []
                 const userSnapshot = await getDocs(collection(db, 'users'));
@@ -60,10 +64,9 @@ function CommunityPage() {
                 //     const userId = userDoc.id;
                 //     const postsCollection = collection(db, 'users', userId, 'posts');
                 // * fix
-                const postsPromises = userSnapshot.docs.map((userDoc)=>{
+                const postsPromises = userSnapshot.docs.map((userDoc) => {
                     const userId = userDoc.id;
                     const postsCollection = collection(db, 'users', userId, 'posts');
-                
 
                     return getDocs(postsCollection).then((postsSnapshot) => {
                         postsSnapshot.forEach((postDoc) => {
@@ -77,7 +80,7 @@ function CommunityPage() {
                 });
 
                 await Promise.all(postsPromises); // wait for all promises
-
+                setLoading(false)
                 setPosts(allPosts);
                 setFilteredPosts(allPosts);
 
@@ -147,24 +150,32 @@ function CommunityPage() {
                     <button onClick={() => handleButtonClick('today')} className={activeButton === 'today' ? styles.activeButton : styles.allSelectButton}>today</button>
                 </div>
                 <h4>check all the other humans creations</h4>
-                <div className={styles.masonryBox}>
-                    <Masonry columns={6} spacing={1} style={{ backgroundColor: "" }}>
-                        {filteredPosts.map((post) => (
-                            <div key={post.id} className={styles.imageCard} onClick={() => navigate(`/postpage/${post.userId}/${post.id}`)}>
-                                <img
-                                    src={post.imageUrl}
-                                    alt="Post"
-                                    style={{ width: "100%", height: "auto", objectFit: "cover", borderRadius: "12px", cursor: "pointer" }}
-                                />
-                                <div>
-                                    <p>{post.userId}</p>
-                                    <p>{post.imageName}</p>
-                                    {/* <p>Posted on: {post.timestamp?.toDate().toLocaleString()}</p> //Optional timestamp */}
+                {loading ? (
+                    <div>
+                        <SpinnerCircularSplit />
+                    </div>
+                ) : (
+                    <div className={styles.masonryBox}>
+                        <Masonry columns={6} spacing={1} style={{ backgroundColor: "" }}>
+                            {filteredPosts.map((post) => (
+                                <div key={post.id} className={styles.imageCard} onClick={() => navigate(`/postpage/${post.userId}/${post.id}`)}>
+                                    <img
+                                        src={post.imageUrl}
+                                        alt="Post"
+                                        style={{ width: "100%", height: "auto", objectFit: "cover", borderRadius: "12px", cursor: "pointer" }}
+                                    />
+                                    <div>
+                                        <p>{post.userId}</p>
+                                        <p>{post.imageName}</p>
+                                        {/* <p>Posted on: {post.timestamp?.toDate().toLocaleString()}</p> //Optional timestamp */}
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
-                    </Masonry>
-                </div>
+                            ))}
+                        </Masonry>
+                    </div>
+                )}
+
+
             </div>
             <div className={styles.ModalContainer}>
                 <AddMediaModel />

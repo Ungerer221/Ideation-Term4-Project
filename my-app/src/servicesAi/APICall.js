@@ -21,12 +21,10 @@ import React, { useState, useEffect } from 'react';
 
 
 
-const callAzureOpenAi = async (prompt) => {
-    console.log('Prompt received in callAzureOpenAI:', prompt); // loging recieving the prompt
+const callAzureOpenAi = async (combinedPromptString) => {
+    console.log('Prompt received in callAzureOpenAI:', combinedPromptString); // loging recieving the prompt
 
-    const endpoint = process.env.REACT_APP_AZURE_OPENAI_ENDPOINT;
-    const apiKey = ""; // TODO: dont upload this 
-    // const apiKey = process.env.REACT_APP_AZURE_OPENAI_API_KEY;    
+    const apiKey = ""; // * dont upload this 
 
     // * calling the api with the fetch method
     try {
@@ -44,7 +42,7 @@ const callAzureOpenAi = async (prompt) => {
                         "content": [
                             {
                                 "type": "text",
-                                "text": prompt
+                                "text": "Can you give ma na art idea based on these key words" + combinedPromptString
                             }
                         ]
                     }

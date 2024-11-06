@@ -38,6 +38,7 @@ function GeneratePage() {
     const [error, setError] = useState(null);
     const [prompt, setPrompt] = useState('');
     const [selectedTags, setSelectedTags] = useState([]); // setting empty array for selected tags to be stored in an array
+    const [savedNotice, setSavedNotice] = useState('');
 
 
     const handleInputChange = (question) => {
@@ -96,28 +97,29 @@ function GeneratePage() {
                 timestamp: new Date(), // to ad a time stamp
             });
             console.log('idea saved')
+            setSavedNotice('Saved! ;)')
         } catch (error) {
             console.error('Error saving message:', error);
         }
     };
 
     // * Parsing the content //////////////////////////////////////////////////
-    const parseContent = (content) => {
-        const sections = content.split(/\*\*(.+?)\*\*/).slice(1);
-        const parsed = [];
+    // const parseContent = (content) => {
+    //     const sections = content.split(/\*\*(.+?)\*\*/).slice(1);
+    //     const parsed = [];
 
-        for (let i = 0; i < sections.length; i += 2) {
-            parsed.push({
-                label: sections[i],
-                content: sections[i + 1] ? sections[i + 1].trim() : "",
-            });
-        }
-        return parsed
-    };
-    const parsedContent = parseContent(messageContent);
+    //     for (let i = 0; i < sections.length; i += 2) {
+    //         parsed.push({
+    //             label: sections[i],
+    //             content: sections[i + 1] ? sections[i + 1].trim() : "",
+    //         });
+    //     }
+    //     return parsed
+    // };
+    // const parsedContent = parseContent(messageContent);
 
     return (
-        <div className={styles.GeneratePageMainContainer}>
+        <div className={styles.generatePageMainContainer}>
             {/* //* TITLE CONTAINER /////////////////////////////////////////// */}
             <div className={styles.titleContainer}>
                 <h1>Generate</h1>
@@ -172,6 +174,9 @@ function GeneratePage() {
                 <div className={styles.filterSelectorPanelTitelCon}>
                     <h1>tool box</h1>
                     <img src={ToolIcon} alt="" />
+                </div>
+                <div>
+                    <p style={{ margin: "0", marginBottom:'10px', lineHeight:'0px', fontSize:'14px', opacity:'.7' }}>Select your desired keywords</p>
                 </div>
                 {/* //* categories // */}
                 <div className={styles.sectionContainer}>
@@ -237,15 +242,17 @@ function GeneratePage() {
                 <div>
                     <div>
                         {messageContent &&
-                            <div>
+                            <div className={styles.aiOutputPanelResponseCon}>
+                                <h1>Your Generated Idea</h1>
                                 <p>{messageContent}</p>
-                                <input 
-                                type="text" 
-                                placeholder="reply here"
-                                />
-                                <button onClick={handleSaveGenIdea}>save</button>
+                                {/* <input type="text" placeholder="reply here"/> */}
+                                <div style={{ opacity: ".7" }}>
+                                    {savedNotice}
+                                </div>
+                                <button onClick={handleSaveGenIdea} className={styles.saveResponseButton}>save</button>
                             </div>
                         }
+
                         {/* {parsedContent.map((section, index) => (
                             <div key={index} style={{ marginBottom: '1em' }} className={styles.aiOutputPanelResponseCon}>
                                 <h3>{section.label}</h3>

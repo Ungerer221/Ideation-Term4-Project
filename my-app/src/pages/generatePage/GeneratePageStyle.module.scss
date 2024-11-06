@@ -9,12 +9,13 @@ $testBGColor: #9857CD;
 $test02BgColor: #98CD57;
 
 
-.GeneratePageMainContainer {
+.generatePageMainContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-family: "Poppins", sans-serif;
+
 
     .titleContainer {
         display: flex;
@@ -37,7 +38,7 @@ $test02BgColor: #98CD57;
         padding: 20px;
         max-width: 450px;
         border-radius: 22px;
-        position: fixed;
+        position: absolute;
         left: 20px;
         top: 250px;
 
@@ -158,7 +159,7 @@ $test02BgColor: #98CD57;
         padding: 20px;
         border-radius: 22px;
         width: 400px;
-        position: fixed;
+        position: absolute;
         right: 40px;
         top: 110px;
         box-shadow:
@@ -232,18 +233,24 @@ $test02BgColor: #98CD57;
 
     .aiOutputPanel {
         // background-color: $backgroundInputColor;
+        // background-color: #98CD57;
         padding: 10px;
         width: 60%;
         min-width: 100px;
         height: fit-content;
         border-radius: 12px;
         margin: auto;
-        position: relative;
-        top: 300px;
+        position: absolute;
+        top: 600px;
+
+
 
 
         .aiOutputPanelResponseCon {
             background-color: $backgroundInputColor;
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 40px;
             z-index: 15;
             box-shadow:
                 0px 2.8px 2.2px rgba(0, 0, 0, 0.02),
@@ -252,6 +259,19 @@ $test02BgColor: #98CD57;
                 0px 22.3px 17.9px rgba(0, 0, 0, 0.042),
                 0px 41.8px 33.4px rgba(0, 0, 0, 0.05),
                 0px 100px 80px rgba(0, 0, 0, 0.07);
+
+            .saveResponseButton {
+                background-color: $primaryColor;
+                outline: none;
+                border: none;
+                padding: 8px 18px;
+                border-radius: 6px;
+                font-size: 16px;
+                color: $backgroundColor;
+                font-weight: 400;
+                text-transform: uppercase;
+                cursor: pointer;
+            }
         }
 
         .textarea {

@@ -17,6 +17,7 @@ import { getAuth } from "firebase/auth";
 import { collection, doc, setDoc } from "firebase/firestore";
 import { newPost } from "../../services/postService";
 import handleImageAnalysis from "../../servicesAi/VisionAiService";
+import Inputfield from "../InputField/inputField";
 
 const AddMediaModel = () => {
 
@@ -123,6 +124,9 @@ const AddMediaModel = () => {
     const [downloadURL, setDownloadURL] = useState("");
     const auth = getAuth();
 
+    const [testContent, SetTestContent] = useState();
+    const [inputvalue, setInputValue] = useState('');
+
     // usestates for vision ai
     const [imageData, setImageData] = useState('');
     const [result, setResult] = useState([]);
@@ -188,13 +192,17 @@ const AddMediaModel = () => {
         };
 
         reader.readAsDataURL(file);
+        console.log('file change executed')
     }
     console.log(result)
 
-    // const handleNameChange = (e) => {
-    //     setImageName(e.target.value);
-    //     console.log(imageName)
-    // }
+    const handleNameChange = (value) => {
+        // setImageName(e.target.value);
+        // SetTestContent(e.target.value)
+        setInputValue(value)
+        // console.log(imageName)
+        console.log(inputvalue);
+    }
 
 
 
@@ -251,9 +259,10 @@ const AddMediaModel = () => {
                 }
             }
         );
+        console.log('handleupload executed')
     };
 
-
+    console.log(testContent)
     return (
         <div>
             <Modal
@@ -271,25 +280,25 @@ const AddMediaModel = () => {
                         upload your art to the community
                     </p>
                     <div>
-                        <label htmlFor="fileName"></label>
+                        {/* <label htmlFor="fileName"></label>
                         <input
                             type="text"
                             placeholder="File Name"
                             value={imageName}
                             onChange={(newText) => setImageName(newText.target.value)}
-                        />
+                        /> */}
                     </div>
                     <div>
-                        <label htmlFor="fileName"></label>
+                        {/* <label htmlFor="fileName"></label>
                         <input
                             name="fileName"
                             type="text"
                             placeholder="Description"
                             value={imageDescription}
                             onChange={(e) => setImageDescription(e.target.value)}
-                        />
+                        /> */}
                     </div>
-                    <input type="file" onChange={handleFileChange} />
+                    <input type="file" onChange={handleFileChange} className={styles.addMediaModelFileButton} />
                     {/* //* Image preview /////////////////////////////////////////////// */}
                     {/* this is to display a preview of the image to show the user what image they have selected */}
                     {file && (
@@ -305,7 +314,8 @@ const AddMediaModel = () => {
                     {/* //* this shows the progress of the upload /////////////////////// */}
                     <div>
                         {uploadProgress > 0 && <p>Upload Progress: {uploadProgress}%</p>}
-                    </div>
+                    </div>   
+
                     <button onClick={handleUpload} className={styles.uploadButton}>Post</button>
                 </ModalContent>
             </Modal>
