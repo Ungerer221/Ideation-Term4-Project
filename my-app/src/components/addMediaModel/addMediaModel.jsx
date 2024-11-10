@@ -293,13 +293,6 @@ const AddMediaModel = () => {
                         upload your art to the community
                     </p>
                     <div>
-                        {/* <label htmlFor="fileName"></label>
-                        <input
-                            type="text"
-                            placeholder="File Name"
-                            value={imageName}
-                            onChange={(newText) => setImageName(newText.target.value)}
-                        /> */}
                         <TextField
                             label="Image Name"
                             value={imageName}
@@ -310,14 +303,6 @@ const AddMediaModel = () => {
                         />
                     </div>
                     <div>
-                        {/* <label htmlFor="fileName"></label>
-                        <input
-                            name="fileName"
-                            type="text"
-                            placeholder="Description"
-                            value={imageDescription}
-                            onChange={(e) => setImageDescription(e.target.value)}
-                        /> */}
                         <TextField
                             label="Description"
                             value={imageDescription}

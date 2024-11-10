@@ -200,16 +200,26 @@ The User is able to post the artwork they have made from their generated idea to
 
 <img src='readmeAssets\postingfunction.png'>
 
+The code snippet for how the image upload function works
+<img src='readmeAssets\codeSnippetForPostUpload.png'>
+<img src='readmeAssets\CodeSnippetFor image Upload.png'>
+
 ## Idea Generation 
 In the site the user can use the azure api to generate art ideas using the key words they have chosen on the tools panel.
 
 <img src='readmeAssets\featurenFunctionaltyScreenshots (3).png'>
+
+Fetching the data from the api component
+<img src='readmeAssets\FetchingApiresponseFromComponent.png'>
 
 
 # Branding
 <img src="readmeAssets\Frame 97.jpg" >
 
 ## Design Software Used
+The Software I used to design Ideation
+
+<img src='readmeAssets\figmaBanner.png'>
 
 ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
 
@@ -271,7 +281,7 @@ This is all the feedback from the user testing.
 - To add the ability to post media from the profile page aswell. `(planned)`
 - To keep the switch desing consistent.
 
-### Dieter 
+### DieterR97 (https://github.com/DieterR97)
 - Very nice UI
 - very cool idea 
 - to add the user's idea that they generated to the post when posting artwork `(planned)`
