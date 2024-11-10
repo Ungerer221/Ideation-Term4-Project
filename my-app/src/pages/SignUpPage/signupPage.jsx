@@ -35,7 +35,7 @@ function SignupPage() {
         }
         setErrorMessage('');
         handleUserCreation();
-        
+
 
     }
 
@@ -91,7 +91,7 @@ function SignupPage() {
                             {/* //* PASSWORD */}
                             <div className={styles.signupEmailInputCon}>
                                 <label for="password">password</label>
-                                    {errorMessage && <p style={{ color: 'red', margin:'0', fontSize:'12px' }}>{errorMessage}</p>}
+                                {errorMessage && <p style={{ color: 'red', margin: '0', fontSize: '12px' }}>{errorMessage}</p>}
                                 <div className={styles.emailInput}>
                                     <input
                                         placeholder="Shhhh it's a secret ;)"
@@ -100,7 +100,9 @@ function SignupPage() {
                                         value={password}
                                         onChange={newText => setPassword(newText.target.value)}
                                     />
-                                    <img src={lockMethod} alt="" />
+                                    <button onClick={togglePasswordVisibility} className={styles.passwordToggleButton}>
+                                        <img src={lockMethod} alt="" />
+                                    </button>
                                 </div>
                             </div>
                             <div>

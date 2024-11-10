@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./addMediaModalStyle.module.scss";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { db, storage } from "../../config/firebase";
@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { styled, css, color } from '@mui/system';
 import { Modal as BaseModal } from '@mui/base/Modal';
+import TextField from '@mui/material/TextField';
 
 // Icons
 import CommunityIconBubble from '../../assets/icons/bubble-chat-stroke-rounded.svg';
@@ -122,6 +123,7 @@ const AddMediaModel = () => {
     const [imageDescription, setImageDescription] = useState('');
     const [uploadProgress, setUploadProgress] = useState(0);
     const [downloadURL, setDownloadURL] = useState("");
+    const fileInputRef = useRef(null);
     const auth = getAuth();
 
     const [testContent, SetTestContent] = useState();
@@ -219,7 +221,6 @@ const AddMediaModel = () => {
 
         // Create a storage reference with a folder (post) and unique filename
         const storageRef = ref(storage, `post/${file.name}`);
-
         // upload task
         const uploadTask = uploadBytesResumable(storageRef, file);
 
@@ -236,16 +237,17 @@ const AddMediaModel = () => {
             }, async () => {
                 // get the url
                 const url = await getDownloadURL(uploadTask.snapshot.ref);
-                setDownloadURL(url)
-                console.log("file available at", url);
+
+                // setDownloadURL(url)
+                // console.log("file available at", url);
 
                 // saveing the image url into the user posts collection
                 try {
                     // can move to postservice.js
                     const userPostsCollectionRef = collection(db, "users", user.uid, "posts");
-
                     // create new doc
                     const newPostRef = doc(userPostsCollectionRef); // auto id gen
+
                     await setDoc(newPostRef, {
                         imageUrl: url,
                         imageName: imageName,
@@ -254,12 +256,23 @@ const AddMediaModel = () => {
                         timestamp: new Date(),
                     });
                     console.log("Post successfully add to firebase")
+                    handleClose();
+                    resetForm();
                 } catch (error) {
                     console.error("Error adding post to Firestore:", error);
                 }
             }
         );
         console.log('handleupload executed')
+    };
+
+    const resetForm = () => {
+        setImageName('');
+        setFile(null);
+        setUploadProgress(0);
+        if (fileInputRef.current) {
+            fileInputRef.current.value = ''; // Reset file input
+        }
     };
 
     console.log(testContent)
@@ -287,6 +300,14 @@ const AddMediaModel = () => {
                             value={imageName}
                             onChange={(newText) => setImageName(newText.target.value)}
                         /> */}
+                        <TextField
+                            label="Image Name"
+                            value={imageName}
+                            onChange={(e) => setImageName(e.target.value)}
+                            fullWidth
+                            margin="normal"
+                            multiline
+                        />
                     </div>
                     <div>
                         {/* <label htmlFor="fileName"></label>
@@ -297,6 +318,14 @@ const AddMediaModel = () => {
                             value={imageDescription}
                             onChange={(e) => setImageDescription(e.target.value)}
                         /> */}
+                        <TextField
+                            label="Description"
+                            value={imageDescription}
+                            onChange={(e) => setImageDescription(e.target.value)}
+                            fullWidth
+                            margin="normal"
+                            multiline
+                        />
                     </div>
                     <input type="file" onChange={handleFileChange} className={styles.addMediaModelFileButton} />
                     {/* //* Image preview /////////////////////////////////////////////// */}
@@ -314,7 +343,7 @@ const AddMediaModel = () => {
                     {/* //* this shows the progress of the upload /////////////////////// */}
                     <div>
                         {uploadProgress > 0 && <p>Upload Progress: {uploadProgress}%</p>}
-                    </div>   
+                    </div>
 
                     <button onClick={handleUpload} className={styles.uploadButton}>Post</button>
                 </ModalContent>

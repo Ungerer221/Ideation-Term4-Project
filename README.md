@@ -216,6 +216,22 @@ The challenges I experience in the development of this project
 - `Parsing` the text data from the `ai` `response` to be more readable for the user.
 - Getting the individual post data from when a use `clicks` on a `post`. 
 
+## User Testing Feedback
+This is all the feedback from the user testing.
+
+### CS
+- Very Cool UI, and likes the look and feel very much.
+- would definitly use it 
+- To add the ability to post media from the profile page aswell 
+- To keep the switch desing consistent 
+
+### Dieter 
+- Very nice UI
+- very cool idea 
+- to add the user's idea that they generated to the post when posting artwork 
+- to view the post information in the profile page too 
+- to format the response from the idea generation to be more readable for the viewer 
+
 ## Bugs to Still Fix
 These are the bugs that still persist in the site 🪲.
 
@@ -230,8 +246,9 @@ The Future Plans for The site.
 
 ### New Features
 - To implement Full Profile Customizability (banner Image, Profile Image, Bio, )
-- to attach the generated ideas to the posted art
+- to attach the generated ideas to the posted art - either by posting media through the generated ideas.
 - to generate ideas directly off of labels used from posted Ideas 
+- To paginate the Community page
 
 ### Improvements 
 - Improve post interaction and post to user data sharing.

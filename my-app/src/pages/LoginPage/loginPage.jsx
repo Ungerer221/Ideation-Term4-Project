@@ -73,7 +73,7 @@ function LoginPage() {
                                         onChange={(e) => setPassword(e.target.value)}
                                     // value={setPassword}
                                     />
-                                    <button onClick={togglePasswordVisibility}>
+                                    <button onClick={togglePasswordVisibility} className={styles.passwordToggleButton}>
                                         <img src={lockMethod} alt="" />
                                     </button>
                                 </div>

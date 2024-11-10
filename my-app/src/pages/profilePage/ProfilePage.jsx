@@ -5,6 +5,9 @@ import { getLoggedinUser } from "../../services/authService";
 import UserPosts from "../../components/currentUserPost/currentUserPost";
 import UserGenIdeas from "../../components/currentUserIdeas/CurrentUserGenIdeas";
 
+// Icons 
+import ProfileLogo from "../../assets/LogoSmall.svg"
+
 // Spinner
 import { SpinnerCircularSplit } from 'spinners-react';
 
@@ -54,7 +57,7 @@ function ProfilePage() {
             {/* //* Left side...................................................................... */}
             <div className={styles.portfolioPageLeftContainer}>
                 <div className={styles.ProfilePageBannerCon}>
-                    <p>banner</p>
+                    {/* <p>banner</p> */}
                 </div>
                 <div className={styles.portTextCon}>
                     {/* <h2> you're posts</h2> */}
@@ -86,7 +89,7 @@ function ProfilePage() {
             <div className={styles.portfolioPageRightContainer}>
                 <div className={styles.profilePageProfileTileCon}>
                     <div className={styles.profileTileImgCon}>
-                        {/* <img src="" alt="" /> */}
+                        <img src={ProfileLogo} alt="" />
                     </div>
                     <div className={styles.profileTileUserInfoCon}>
                         <h2>{user.username}</h2>
@@ -95,11 +98,11 @@ function ProfilePage() {
                         <div className={styles.followersandFollowingCon}>
                             <div className={styles.fInfoCon}>
                                 <p>followers</p>
-                                <h3>80</h3>
+                                <h3>0</h3>
                             </div>
                             <div className={styles.fInfoCon}>
                                 <p>following</p>
-                                <h3>800</h3>
+                                <h3>0</h3>
                             </div>
                         </div>
                     </div>

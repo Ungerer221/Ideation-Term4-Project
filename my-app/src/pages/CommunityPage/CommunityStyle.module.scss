@@ -82,6 +82,7 @@ $test02BgColor: #98CD57;
                 padding: 8px 16px;
                 font-weight: 500;
                 text-transform: capitalize;
+                color: $backgroundColor;
                 cursor: pointer;
                 border-radius: 6px;
                 font-weight: 900;
@@ -172,10 +173,6 @@ $test02BgColor: #98CD57;
             margin-top: 20px;
             display: flex;
             justify-content: center;
-
-            .masonary{
-                
-            }
 
             .imageCard {
                 // background-color: $testBGColor;

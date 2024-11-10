@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
 import { db } from "../../config/firebase";
 import styles from './userPostStyle.module.scss';
+import { useNavigate } from "react-router-dom";
 
 const UserPosts = () => {
+    const navigate = useNavigate();
     const [posts, setPosts] = useState([]);
     const auth = getAuth();
 
@@ -26,6 +28,7 @@ const UserPosts = () => {
                 const postsData = querySnapShot.docs.map((doc) => ({
                     id: doc.id,
                     ...doc.data(),
+                    userId: user.uid,
                 }));
                 setPosts(postsData);
             } catch (error) {
@@ -44,13 +47,12 @@ const UserPosts = () => {
                 // if there are posts found
                 <div className={styles.cardContainer}>
                     {posts.map((post) => (
-                        <div key={post.id} className={styles.card}>
+                        <div key={post.id} className={styles.card} onClick={() => navigate(`/postpage/${post.userId}/${post.id}`)}>
                             <img
                                 src={post.imageUrl}
                                 alt="User Post"
                                 style={{ width: "100%", height: "auto", objectFit: "cover" }}
                             />
-                            {/* <p>Posted on: {post.timestamp?.toDate().toLocaleString()}</p> */}
                         </div>
                     ))}
                 </div>

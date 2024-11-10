@@ -35,10 +35,6 @@ function CommunityPage() {
     const [activeButton, setActiveButton] = useState('all');
     const [filteredPosts, setFilteredPosts] = useState([]);
 
-    // const handleButtonClick = (buttonName) => {
-    //     setActiveButton(buttonName);
-    // }
-
     // ? can make it another componenet - calling all posts posted by users
 
     const [loading, setLoading] = useState(true);
@@ -59,11 +55,6 @@ function CommunityPage() {
                 const allPosts = []
                 const userSnapshot = await getDocs(collection(db, 'users'));
 
-                // old
-                // userSnapshot.forEach((userDoc) => {
-                //     const userId = userDoc.id;
-                //     const postsCollection = collection(db, 'users', userId, 'posts');
-                // * fix
                 const postsPromises = userSnapshot.docs.map((userDoc) => {
                     const userId = userDoc.id;
                     const postsCollection = collection(db, 'users', userId, 'posts');
@@ -165,9 +156,8 @@ function CommunityPage() {
                                         style={{ width: "100%", height: "auto", objectFit: "cover", borderRadius: "12px", cursor: "pointer" }}
                                     />
                                     <div>
-                                        <p>{post.userId}</p>
-                                        <p>{post.imageName}</p>
-                                        {/* <p>Posted on: {post.timestamp?.toDate().toLocaleString()}</p> //Optional timestamp */}
+                                        {/* <p>{post.userId}</p> */}
+                                        {/* <p>{post.imageName}</p> */}
                                     </div>
                                 </div>
                             ))}

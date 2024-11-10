@@ -39,7 +39,7 @@ function Homepage() {
                         <h1>ideation</h1>
                         <h2>un-blocked</h2>
                         <p>
-                            Youre new art idea genertor Tool. Feeling that dreaded art block or just want to change things up a bit and experiment with new ideas
+                            Your new art idea genertor Tool. Feeling that dreaded art block or just want to change things up a bit and experiment with new ideas
                             this is the place for you.
                         </p>
                     </div>

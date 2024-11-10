@@ -4,6 +4,7 @@ import styles from './GeneratePageStyle.module.scss'
 // icons
 import MenuIcon from '../../assets/menuIcon.svg'
 import ToolIcon from '../../assets/icons/wrench-01-stroke-rounded.svg'
+import GenButtonIcon from '../../assets/logomedium.svg'
 
 // assets
 import SmallHazzardArt from '../../assets/hazzardart/smallhazzardart.svg'
@@ -29,7 +30,7 @@ import { db } from "../../config/firebase";
 // TODO : div that shows the key words that have been selected
 
 
-function GeneratePage() {
+function GeneratePage({ apiResponse }) {
 
     // const [prompt, setPrompt] = useState("");
     // const [response, setResponse] = useState("");
@@ -47,7 +48,7 @@ function GeneratePage() {
 
     const fetchData = async () => {
         console.log('Prompt before calling API:', prompt);
-        // setLoading(true);
+        setLoading(true);
         // setError(null)
         try {
             const content = await callAzureOpenAi(prompt);
@@ -56,6 +57,8 @@ function GeneratePage() {
             console.log("frontend response", content);
         } catch (error) {
             setError(error.message);
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -81,6 +84,34 @@ function GeneratePage() {
 
     console.log(combinedPromptString)
 
+    // * Parsing the content //////////////////////////////////////////////////
+    const parseContent = (content) => {
+        const sections = content.split(/\*\*(.+?)\*\*/).slice(1);
+        const parsed = [];
+
+        for (let i = 0; i < sections.length; i += 2) {
+            parsed.push({
+                label: sections[i],
+                content: sections[i + 1] ? sections[i + 1].trim() : "",
+            });
+        }
+        return parsed
+    };
+    const parsedContent = parseContent(messageContent);
+
+    // const formatApiResponse = (response) => {
+    //     // Split the response at each number followed by a period and a space (e.g., "1. ")
+    //     const items = response.split(/(?=\d+\.\s)/);
+
+    //     // map over each item 
+    //     return items.map((item, index) => {
+    //         // Convert Text between ** ** to <strong>
+    //         const formattedText = item.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+    //         return <p key={index} dangerouslySetInnerHTML={{ __html: formattedText.trim() }} />;
+    //     });
+    // };
+
     // * Saving gen idea //////////////////////////////////////////////////////
     const handleSaveGenIdea = async () => {
         try {
@@ -102,21 +133,6 @@ function GeneratePage() {
             console.error('Error saving message:', error);
         }
     };
-
-    // * Parsing the content //////////////////////////////////////////////////
-    // const parseContent = (content) => {
-    //     const sections = content.split(/\*\*(.+?)\*\*/).slice(1);
-    //     const parsed = [];
-
-    //     for (let i = 0; i < sections.length; i += 2) {
-    //         parsed.push({
-    //             label: sections[i],
-    //             content: sections[i + 1] ? sections[i + 1].trim() : "",
-    //         });
-    //     }
-    //     return parsed
-    // };
-    // const parsedContent = parseContent(messageContent);
 
     return (
         <div className={styles.generatePageMainContainer}>
@@ -146,7 +162,8 @@ function GeneratePage() {
             <div className={styles.generationButtonSection}>
 
                 <button onClick={fetchData} className={styles.powerButtonCon}>
-                    <img src={PowerButton} alt="" />
+                    {/* <img src={PowerButton} alt="" /> */}
+                    <img src={GenButtonIcon} alt="" />
                 </button>
 
                 <div className={styles.genRingCon01}>
@@ -176,7 +193,7 @@ function GeneratePage() {
                     <img src={ToolIcon} alt="" />
                 </div>
                 <div>
-                    <p style={{ margin: "0", marginBottom:'10px', lineHeight:'0px', fontSize:'14px', opacity:'.7' }}>Select your desired keywords</p>
+                    <p style={{ margin: "0", marginBottom: '10px', lineHeight: '0px', fontSize: '14px', opacity: '.7' }}>Select your desired keywords</p>
                 </div>
                 {/* //* categories // */}
                 <div className={styles.sectionContainer}>
@@ -227,42 +244,27 @@ function GeneratePage() {
                 </div>
             </div>
             {/* //* textoutput panel ////////////////////////////////////////// */}
-            <div>
-                {/* <textarea
-                    name=""
-                    // onChange={(e) => {
-                    //     setPrompt(e.target.value)
-                    // }}
-                    placeholder="enter prompt here..."
-                    value={prompt}
-                    onChange={handleInputChange}
-                ></textarea> */}
-            </div>
             <div className={styles.aiOutputPanel}>
                 <div>
-                    <div>
-                        {messageContent &&
-                            <div className={styles.aiOutputPanelResponseCon}>
-                                <h1>Your Generated Idea</h1>
-                                <p>{messageContent}</p>
-                                {/* <input type="text" placeholder="reply here"/> */}
-                                <div style={{ opacity: ".7" }}>
-                                    {savedNotice}
-                                </div>
-                                <button onClick={handleSaveGenIdea} className={styles.saveResponseButton}>save</button>
-                            </div>
-                        }
+                    <div >
 
-                        {/* {parsedContent.map((section, index) => (
-                            <div key={index} style={{ marginBottom: '1em' }} className={styles.aiOutputPanelResponseCon}>
-                                <h3>{section.label}</h3>
-                                <p>{section.content}</p>
-                                <button onClick={handleSaveGenIdea}>save</button>
-                            </div>
-                        ))} */}
+                        {loading ? (
+                            <p>Loading...</p>
+                        ) : (
+                             parsedContent && parsedContent.length > 0 && (
+                                <div className={styles.aiOutputPanelResponseCon}>
+                                    {parsedContent.map((section, index) => (
+                                        <div key={index} style={{ marginBottom: '1em' }} >
+                                            <h3>{section.label}</h3>
+                                            <p>{section.content}</p>
+                                        </div>
+                                    ))}
+                                    <p>{savedNotice}</p>
+                                    <button onClick={handleSaveGenIdea} className={styles.saveResponseButton}>save</button>
+                                </div>
+                            )
+                        )}
                     </div>
-                    {/* <p name="answer" id="aiAnswer" placeholder="response here" className={styles.textarea}>Response here</p>
-                    <p>{response}</p> */}
                 </div>
             </div>
         </div>

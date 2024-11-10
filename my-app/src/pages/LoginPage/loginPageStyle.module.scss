@@ -119,6 +119,12 @@ $test02BgColor: #98CD57;
                             outline: none;
                             width: 100%;
                         }
+                        .passwordToggleButton{
+                            background-color: transparent;
+                            outline: none;
+                            border: none;
+                            cursor: pointer;
+                        }
                     }
                 }
                 .signUpNavBtn{

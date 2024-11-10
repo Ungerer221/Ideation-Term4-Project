@@ -10,6 +10,11 @@ import BackIcon from '../../assets/icons/link-backward-stroke-rounded.svg'
 function PostDetailPage() {
     const navigate = useNavigate();
 
+    // This goes back to the previous page in the history
+    const handleGoBack = () => {
+        navigate(-1); 
+      };
+
     const { userId, postId } = useParams();
     const [post, setPost] = useState(null);
 
@@ -38,26 +43,6 @@ function PostDetailPage() {
         fetchPost();
     }, [userId, postId]);
 
-    // useEffect(() => {
-    //     const fetchPost = async () => {
-    //       try {
-    //         const postRef = doc(db, 'users' ,userId, 'posts', postId); // Adjust if posts collection is global
-    //         const postSnap = await getDoc(postRef);
-    //         if (postSnap.exists()) {
-    //           setPost(postSnap.data());
-    //         } else {
-    //           console.log("No such document!");
-    //         }
-    //       } catch (error) {
-    //         console.error("Error fetching post:", error);
-    //       }
-    //     };
-
-    //     fetchPost();
-    //   }, [postId]);
-
-    // console.log('userId:', userId, 'postId:', postId);
-
     console.log('post id', postId)
     console.log("hello", post)
 
@@ -66,7 +51,7 @@ function PostDetailPage() {
     return (
         <div className={styles.postDetailsPageMainContainer}>
             {/* to prevent rendering undefined or null data */}
-            <button onClick={() => navigate('/community')} className={styles.postDetailsNavBackButton}>
+            <button onClick={handleGoBack} className={styles.postDetailsNavBackButton}>
                 <img src={BackIcon} alt="" />
             </button>
             <div className={styles.postDetailsImageSection}>
@@ -76,7 +61,7 @@ function PostDetailPage() {
             </div>
             <div className={styles.postDetailsCon}>
                 <h1>{post?.imageName || "Untitled"}</h1>
-                <p>{post?.description || "No description available."}</p>
+                <p>{post?.imageDescription || "No description available."}</p>
                 <h3>Color Details</h3>
                 <div className={styles.colorblock}>
                     <p>RED: {post?.imageColors[0].color.red || "no"}</p>

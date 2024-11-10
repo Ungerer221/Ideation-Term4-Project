@@ -1,9 +1,10 @@
 import { getAuth } from "firebase/auth";
-import { collection, doc, getDocs } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { db } from "../../config/firebase";
+import styles from "./currentUserGenIdeasStyle.module.scss"
 
-function UserGenIdeas({ documents }) {
+function UserGenIdeas({ document }) {
     const [userIdeas, setUserIdeas] = useState([]);
     const auth = getAuth();
 
@@ -31,6 +32,28 @@ function UserGenIdeas({ documents }) {
         }
         fetchIdeas()
     }, [auth.currentUser]);
+
+    // const [savedResponse, setSavedResponse] = useState(null);
+    // useEffect(() => {
+    //     const fetchSavedResponse = async () => {
+    //         try {
+    //             const docRef = doc(db, "users", userId, "savedResponses", "responseDocId"); // Adjust this path
+    //             const docSnap = await getDoc(docRef);
+
+    //             if (docSnap.exists()) {
+    //                 const data = docSnap.data();
+    //                 console.log("Retrieved data:", data); // Debugging log
+    //                 setSavedResponse(data);
+    //             } else {
+    //                 console.log("No saved response found");
+    //             }
+    //         } catch (error) {
+    //             console.error("Error fetching saved response:", error);
+    //         }
+    //     };
+
+    //     fetchSavedResponse();
+    // }, [userId]);
 
     // * parsing the data /////////////////////////////////////////////////////
     // const parseContent = (content) => {
@@ -84,20 +107,25 @@ function UserGenIdeas({ documents }) {
                     ))}
                 </div>
             ))} */}
+            
             {userIdeas.length === 0 ? (
                 <p>No ideas found.</p>
             ) : (
-                <ul>
+                // <ul>
+                <div className={styles.userGenIdeasCon}>
                     {userIdeas.map(idea => (
-                        <li key={idea.id}>
+                        <div key={idea.id} className={styles.userIdeaItemCon}>
                             <h3>{idea.title}</h3>
                             <p>{idea.content}</p>
-                        </li>
+                        </div>
                     ))}
-                </ul>
+                </div>
+                // </ul>
             )}
 
-            
+          
+
+
         </div>
     )
 }

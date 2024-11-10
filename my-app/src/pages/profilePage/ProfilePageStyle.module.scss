@@ -108,15 +108,18 @@ $test02BgColor: #98CD57;
 
             width: 100%;
             height: 100%;
-            background-image: radial-gradient(rgba(255, 255, 255, 0.452) 2px, transparent 0);
+            // background-image: radial-gradient(rgba(255, 255, 255, 0.452) 2px, transparent 0);
             background-size: 30px 30px;
             background-position: -5px -5px;
 
             .profileTileImgCon {
                 background-color: $backgroundColor;
                 border-radius: 100%;
-                width: 150px;
-                height: 150px;
+                width: 100px;
+                height: 100px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
 
             .profileTileUserInfoCon {

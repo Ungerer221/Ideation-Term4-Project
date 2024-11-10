@@ -9,7 +9,7 @@ import { getStorage } from "firebase/storage";
 // Your web app's Firebase configuration
 const firebaseConfig = {
     //* paste...
-    
+  
 };
 // const firebaseConfig = process.env.firebaseConfig;
 

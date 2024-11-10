@@ -185,15 +185,15 @@ const MenuModelComp = () => {
                         <img src={SettingIcon} alt="" />
                     </div>
                     <div className={styles.divider}></div>
-                    <div className={styles.menuUserCon}>
+                    {/* <div className={styles.menuUserCon}>
                         <h3>username</h3>
                         <div style={{ backgroundColor: "#000", borderRadius: '32px', width: '32px', height: '32px' }}></div>
-                    </div>
-                    <MenuSection label="User">
-                        <MenuItem onClick={createHandleMenuClick('Profile')}>Profile</MenuItem>
-                        <MenuItem onClick={createHandleMenuClick('Profile')}>Settings</MenuItem>
-                        <MenuItem onClick={createHandleMenuClick('Profile')}>Post</MenuItem>
-                    </MenuSection>
+                    </div> */}
+                    {/* <MenuSection label="User"> */}
+                        {/* <MenuItem onClick={createHandleMenuClick('Profile')}>Profile</MenuItem> */}
+                        {/* <MenuItem onClick={createHandleMenuClick('Profile')}>Settings</MenuItem> */}
+                        {/* <MenuItem onClick={createHandleMenuClick('Profile')}>Post</MenuItem> */}
+                    {/* </MenuSection> */}
                     <MenuSection label="Danger zone">
                         <MenuItem onClick={logout}>Log out</MenuItem>
                     </MenuSection>
