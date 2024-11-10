@@ -224,6 +224,7 @@ The Software I used to design Ideation
 ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
 
 # Conceptulisation Process
+The process I went through designing the Ideation site.
 
 ## MoodBoard
 <img src="readmeAssets\Moodboard.png">
@@ -235,6 +236,12 @@ The Software I used to design Ideation
 
 ### Home Page
 <img src='readmeAssets\home page.png'>
+
+### Profile Page
+<img src='readmeAssets\profile pagewireframe.png'>
+
+### Generate Idea Page
+<img src='readmeAssets\generatepagewireframe.png'>
 
 ## ER Diagram
 <img src='readmeAssets\ER Diagram.png'>
