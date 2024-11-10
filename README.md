@@ -1,5 +1,7 @@
 <img src="readmeAssets\Term4ProjectBanner.png">
 
+[![npm version](https://img.shields.io/npm/v/@google-cloud/vision.svg)](https://www.npmjs.org/package/@google-cloud/vision)
+
 <h1> IDEATION </h1>
 
 <h3 align="center"> By Ungerer Hattingh </h3>
@@ -8,7 +10,6 @@
   Ideation is an Idea generation app powered by Ai. In this Site you will be able to generate art ideas using key words as prompts for the ai (Azure Open AI). You can then upload your art ideas and have them analyzed by google clouds Vision api and post them for the world to see. 
 </p>
 
-[![npm version](https://img.shields.io/npm/v/@google-cloud/vision.svg)](https://www.npmjs.org/package/@google-cloud/vision)
 
 # Ideation-Term4-Project
 <img src="readmeAssets\logo.png">
@@ -56,6 +57,7 @@ These are the technologies i have decided to use for my project
 
 ### Code languages 
 
+<img src='readmeAssets\jsBanner.png'>
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
@@ -63,6 +65,8 @@ These are the technologies i have decided to use for my project
 ### Code frameworks
 
 **Frontend:**
+
+<img src='readmeAssets\reactBanner.png'>
 
 React is the code frame work I have decided to use for the building of this web app
 
@@ -75,7 +79,7 @@ The database services used in this project are
 
 ![Firebase](https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase)
 
-Firebase is the backend services i am using for this project
+Firebase is the backend services I am using for this project
 
 ### Ai services used 
 
@@ -301,7 +305,7 @@ The Future Plans for The site.
 
 ![Adobe Premiere Pro](https://img.shields.io/badge/Adobe%20Premiere%20Pro-9999FF.svg?style=for-the-badge&logo=Adobe%20Premiere%20Pro&logoColor=white)
 
-[Demo_Video_Link](https://drive.google.com/drive/folders/1UpU56ajJPjw2dpUXimhDywUO3oyQB5Se)
+[Demo_Video_Link](https://drive.google.com/drive/folders/1UpU56ajJPjw2dpUXimhDywUO3oyQB5Se?usp=sharing)
 
 
 # Author
