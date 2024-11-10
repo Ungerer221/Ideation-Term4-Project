@@ -43,6 +43,14 @@ The Site had to fall into certain categories such as :
   * [Idea Generation](#idea-generation)
 * [Branding](#branding)
 * [Concept](#conceptulisation-process)
+  * [MoodBoard](#moodboard)
+  * [Color Pallete](#color-pallete)
+  * [Wireframes](#wireframes)
+    * [Home Page](#home-page)
+    * [ER Diagram](#er-diagram)
+    * [User Flow Diagram](#user-flow-diagram)
+    * [Typography](#typography)
+    * [Icon library used](#icon-library-used)
 * [Development Process](#development-process)
 * [Final Outcome](#final-outcome)
   * [Mockups](#mockups)
@@ -59,6 +67,10 @@ These are the technologies i have decided to use for my project
 
 <img src='readmeAssets\jsBanner.png'>
 
+<img src='readmeAssets/HtmlBanner.png'>
+
+<img src='readmeAssets\scssBanner.png'>
+
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
@@ -67,9 +79,9 @@ These are the technologies i have decided to use for my project
 
 **Frontend:**
 
-<img src='readmeAssets\reactBanner.png'>
-
 React is the code frame work I have decided to use for the building of this web app
+
+<img src='readmeAssets\reactBanner.png'>
 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 
