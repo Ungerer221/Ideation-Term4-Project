@@ -1,19 +1,28 @@
 <img src="readmeAssets\Term4ProjectBanner.png">
 
-[![npm version](https://img.shields.io/npm/v/@google-cloud/vision.svg)](https://www.npmjs.org/package/@google-cloud/vision)
-![Static Badge](https://img.shields.io/badge/javascript?style=flat&label=language&color=%23FFE45B&link=https%3A%2F%2Fwww.javascript.com%2F)
-
-# Ideation-Term4-Project
-
-<img src="readmeAssets\logo.png">
-Logo (TM)
 <h1> IDEATION </h1>
 
 <h3 align="center"> By Ungerer Hattingh </h3>
 
 <p align="center">
-  Ideation is a generation app powered by Ai
+  Ideation is an Idea generation app powered by Ai. In this Site you will be able to generate art ideas using key words as prompts for the ai (Azure Open AI). You can then upload your art ideas and have them analyzed by google clouds Vision api and post them for the world to see. 
 </p>
+
+[![npm version](https://img.shields.io/npm/v/@google-cloud/vision.svg)](https://www.npmjs.org/package/@google-cloud/vision)
+
+# Ideation-Term4-Project
+<img src="readmeAssets\logo.png">
+Logo (TM)
+
+# Term Brief
+For this Term we were instructed to develop an app or site of our own choosing (i could be whatever we wanted) as long as its main features consist of using an ai api to work. We were allowed to use any code language and framework to develop the site. 
+The site also had a to have a positive impact of these fields below.
+The Site had to fall into certain categories such as :
+- social
+- Accessibilty 
+- Enviroment
+- Health Care 
+
 
 ## Table of contents
 
@@ -25,6 +34,22 @@ Logo (TM)
   * [prerequisites](#prerequisites)
   * [node packages](#node-packages-to-install)
   * [method](#method)
+* [feature & Functionaluty](#features--functionality)
+  * [Authentication](#authentication)
+  * [User Profile](#user-profile)
+  * [Community](#community)
+  * [Posting](#posting)
+  * [Idea Generation](#idea-generation)
+* [Branding](#branding)
+* [Concept](#conceptulisation-process)
+* [Development Process](#development-process)
+* [Final Outcome](#final-outcome)
+  * [Mockups](#mockups)
+  * [Video Demonstration](#video-demonstration-️)
+    * [Software Used](#software-used)
+* [Auther](#author)
+* [Contact](#contact-)
+* [Acknowledgements](#acknowledgements)
 
 ## Technologies used
 These are the technologies i have decided to use for my project
@@ -39,11 +64,14 @@ These are the technologies i have decided to use for my project
 
 **Frontend:**
 
+React is the code frame work I have decided to use for the building of this web app
+
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 
-React is the code frame work i have decided to use for the building of this web app
 
 **Backend:**
+
+The database services used in this project are 
 
 ![Firebase](https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase)
 
@@ -51,11 +79,11 @@ Firebase is the backend services i am using for this project
 
 ### Ai services used 
 
-Google Cloud 
 ![Google Cloud](https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white)
+Google Cloud 
 
-Azure Open Ai 
 ![Azure](https://img.shields.io/badge/azure-%230072C6.svg?style=for-the-badge&logo=microsoftazure&logoColor=white)
+Azure Open Ai 
 
 # Setup
 
@@ -133,6 +161,7 @@ run your project with ```npm start```
 
 
 # Features & Functionality 
+All the feature and functions in the site.
 
 ## Authentication 
 The user can sign up and create a new account or if they already have an account they can login with the login form. The site makes use of firebases Athentication services and When a user creats an account their info is also added to the data base as to later be fetched for the user profile page.
@@ -216,21 +245,23 @@ The challenges I experience in the development of this project
 - `Parsing` the text data from the `ai` `response` to be more readable for the user.
 - Getting the individual post data from when a use `clicks` on a `post`. 
 
-## User Testing Feedback
+## User Testing Feedback🚶
 This is all the feedback from the user testing.
 
 ### CS
 - Very Cool UI, and likes the look and feel very much.
-- would definitly use it 
-- To add the ability to post media from the profile page aswell 
-- To keep the switch desing consistent 
+- would definitly use it and enjoyed using the site.
+- To add the ability to post media from the profile page aswell. `(planned)`
+- To keep the switch desing consistent.
 
 ### Dieter 
 - Very nice UI
 - very cool idea 
-- to add the user's idea that they generated to the post when posting artwork 
-- to view the post information in the profile page too 
+- to add the user's idea that they generated to the post when posting artwork `(planned)`
+- to view the post information in the profile page too `(implemented)`
 - to format the response from the idea generation to be more readable for the viewer 
+- Loading display when generating an idea `(planned)`
+- change Profile image and banner `(planned)`
 
 ## Bugs to Still Fix
 These are the bugs that still persist in the site 🪲.
@@ -264,12 +295,22 @@ The Future Plans for The site.
 <img src='readmeAssets\mockup (2).png'>
 <img src='readmeAssets\mockup (3).png'>
 
-## Video Demonstration
+## Video Demonstration 📽️
+
+### Software Used
+
+![Adobe Premiere Pro](https://img.shields.io/badge/Adobe%20Premiere%20Pro-9999FF.svg?style=for-the-badge&logo=Adobe%20Premiere%20Pro&logoColor=white)
+
+[Demo_Video_Link](https://drive.google.com/drive/folders/1UpU56ajJPjw2dpUXimhDywUO3oyQB5Se)
+
 
 # Author
 [Ungerer Hattingh](https://github.com/Ungerer221)
 
-# Contact
+# Contact 📞
 you can contact me at...
 
 # Acknowledgements
+- HugeIcons
+- Pinterist 
+- MarkDown badges https://github.com/Ileriayo/markdown-badges
