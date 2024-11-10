@@ -335,7 +335,7 @@ The Future Plans for The site.
 [Ungerer Hattingh](https://github.com/Ungerer221)
 
 # Contact 📞
-you can contact me at...
+you can contact me on github or at...
 
 # Acknowledgements
 - HugeIcons
